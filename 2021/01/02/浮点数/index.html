@@ -87,13 +87,13 @@
 <meta property="og:site_name" content="梦幻">
 <meta property="og:description" content="IEEE 754">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://dreamhuan.github.io/2021/01/02/浮点数/浮点数/1.jpg">
-<meta property="og:image" content="https://dreamhuan.github.io/2021/01/02/浮点数/浮点数/2.jpg">
-<meta property="og:updated_time" content="2021-01-02T15:06:50.357Z">
+<meta property="og:image" content="https://dreamhuan.github.io/2021/01/02/浮点数/1.jpg">
+<meta property="og:image" content="https://dreamhuan.github.io/2021/01/02/浮点数/2.jpg">
+<meta property="og:updated_time" content="2021-06-22T09:24:10.469Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浮点数">
 <meta name="twitter:description" content="IEEE 754">
-<meta name="twitter:image" content="https://dreamhuan.github.io/2021/01/02/浮点数/浮点数/1.jpg">
+<meta name="twitter:image" content="https://dreamhuan.github.io/2021/01/02/浮点数/1.jpg">
 
 
 
@@ -431,11 +431,11 @@
 <li>E 是指数位</li>
 </ul>
 <p>float 为 32 位二进制数表示，最高的 1 位是符号位 s，接着的 8 位是指数 E，剩下的 23 位为有效数字 M。1+8+23=32，double 就是 1+11+52=64，可以看到指数位和有效数字位都比 float 大了，所以整体可表示的数值也大了很多。但是规则是一样的。</p>
-<p>接下来就说 double 的规则<br><img src="./浮点数/1.jpg" alt="double"><br>sign 1 位比特, exponent 11 位比特, significand 52 比特.<br>s 表示符号位<br>exponent 并不是公式中的 E, 而是 E+1023（因为 E 可以为负数）.<br>前面说过，1≤M&lt;2，也就是说，M 可以写成 1.xxx 的形式，其中 xxx 表示小数部分 . significand 保存的就是小数部分.当 exponent 全为 1, significand 部分全为 0 时, 表示 Infinity</p>
+<p>接下来就说 double 的规则<br><img src="./1.jpg" alt="double"><br>sign 1 位比特, exponent 11 位比特, significand 52 比特.<br>s 表示符号位<br>exponent 并不是公式中的 E, 而是 E+1023（因为 E 可以为负数）.<br>前面说过，1≤M&lt;2，也就是说，M 可以写成 1.xxx 的形式，其中 xxx 表示小数部分 . significand 保存的就是小数部分.当 exponent 全为 1, significand 部分全为 0 时, 表示 Infinity</p>
 <p>js 的 number 的以下几个常量说下计算方式</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.MAX_SAFE_INTEGER === <span class="number">9007199254740991</span>;</span><br><span class="line"><span class="built_in">Number</span>.MIN_SAFE_INTEGER === <span class="number">-9007199254740991</span>;</span><br><span class="line"><span class="built_in">Number</span>.MAX_VALUE === <span class="number">1.7976931348623157e308</span>;</span><br><span class="line"><span class="built_in">Number</span>.MIN_VALUE === <span class="number">5e-324</span>;</span><br></pre></td></tr></table></figure>
 <p>MAX_SAFE_INTEGER，最大安全整数，表示再这个范围内用于计算时不会有精度丢失。其实就是把 52 个有效数字位全部用上的最大值，2^53-1，再大一点就 M 部分就放不下了</p>
-<p>Number.MAX_VALUE，最大数 (2^53 - 1) x 2^971<br><img src="./浮点数/2.jpg" alt="double"></p>
+<p>Number.MAX_VALUE，最大数 (2^53 - 1) x 2^971<br><img src="./2.jpg" alt="double"></p>
 
       
     </div>

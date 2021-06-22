@@ -87,17 +87,17 @@
 <meta property="og:site_name" content="梦幻">
 <meta property="og:description" content="Abstract syntax tree  In computer science, an abstract syntax tree (AST), or just syntax tree, is a tree representation of the abstract syntactic structure of source code written in a programming lang">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://dreamhuan.github.io/2021/05/10/抽象语法树(AST)/抽象语法树(AST">
+<meta property="og:image" content="https://dreamhuan.github.io/2021/05/10/抽象语法树(AST)/Abstract_syntax_tree_for_Euclidean_algorithm.svg">
 <meta property="og:image" content="http://qiankunli.github.io/public/upload/basic/compile_process.jpg">
 <meta property="og:image" content="http://qiankunli.github.io/public/upload/basic/javascript_ast.png">
-<meta property="og:image" content="https://dreamhuan.github.io/2021/05/10/抽象语法树(AST)/抽象语法树(AST">
-<meta property="og:image" content="https://dreamhuan.github.io/2021/05/10/抽象语法树(AST)/抽象语法树(AST">
-<meta property="og:image" content="https://dreamhuan.github.io/2021/05/10/抽象语法树(AST)/抽象语法树(AST">
-<meta property="og:updated_time" content="2021-05-26T03:37:01.541Z">
+<meta property="og:image" content="https://dreamhuan.github.io/2021/05/10/抽象语法树(AST)/add-ast.png">
+<meta property="og:image" content="https://dreamhuan.github.io/2021/05/10/抽象语法树(AST)/ts-ast.png">
+<meta property="og:image" content="https://dreamhuan.github.io/2021/05/10/抽象语法树(AST)/next-analysis.png">
+<meta property="og:updated_time" content="2021-06-22T09:26:06.466Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="抽象语法树(abstract syntax tree, AST)">
 <meta name="twitter:description" content="Abstract syntax tree  In computer science, an abstract syntax tree (AST), or just syntax tree, is a tree representation of the abstract syntactic structure of source code written in a programming lang">
-<meta name="twitter:image" content="https://dreamhuan.github.io/2021/05/10/抽象语法树(AST)/抽象语法树(AST">
+<meta name="twitter:image" content="https://dreamhuan.github.io/2021/05/10/抽象语法树(AST)/Abstract_syntax_tree_for_Euclidean_algorithm.svg">
 
 
 
@@ -429,7 +429,7 @@
 <p>抽象语法树（AST）就是由代码本身解析得到的一个树形结构<br><a id="more"></a></p>
 <p>直接盗用 wikipedia 的图</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> b ≠ <span class="number">0</span></span><br><span class="line">  <span class="keyword">if</span> a &gt; b</span><br><span class="line">    a := a − b</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    b := b − a</span><br><span class="line"><span class="keyword">return</span> a</span><br></pre></td></tr></table></figure>
-<p><img src="./抽象语法树(AST" alt="Abstract_syntax_tree_for_Euclidean_algorithm">/Abstract_syntax_tree_for_Euclidean_algorithm.svg&gt;)<br><a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree" target="_blank" rel="noopener">图片来源</a></p>
+<p><img src="./Abstract_syntax_tree_for_Euclidean_algorithm.svg" alt="Abstract_syntax_tree_for_Euclidean_algorithm"><br><a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree" target="_blank" rel="noopener">图片来源</a></p>
 <h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><p>至于为什么会有这么一个东西以及怎么来的就要祭出我们的编译原理了：</p>
 <p><img src="http://qiankunli.github.io/public/upload/basic/compile_process.jpg" alt="compile_process"><br><a href="http://qiankunli.github.io/2020/02/08/fundamentals_of_compiling_frontend.html" target="_blank" rel="noopener">图片来源</a></p>
 <p>高级语言需要经过以上步骤才能被计算机识别并执行，ast 就是前端（编译原理上的“前端”）的产物，解释型语言的后端往往被虚拟机替代了，不会直接生成二进制文件。ast 包含了代码的全部信息，按一定规则解析 ast 就可以得到目标程序，可以说 ast 就是“结构化”后的代码。</p>
@@ -437,10 +437,10 @@
 <h3 id="js-与-ts-的区别"><a href="#js-与-ts-的区别" class="headerlink" title="js 与 ts 的区别"></a>js 与 ts 的区别</h3><p><del>没啥区别</del></p>
 <p>不能说十分相似只能说完全一样！</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="./抽象语法树(AST" alt="add-ast">/add-ast.png&gt;)</p>
+<p><img src="./add-ast.png" alt="add-ast"></p>
 <p>然而 ts 多了类型系统，所以在 ast 上也会有相应的结点来体现，比如</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a: <span class="built_in">number</span>, b: <span class="built_in">number</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="./抽象语法树(AST" alt="ts-ast">/ts-ast.png&gt;)</p>
+<p><img src="./ts-ast.png" alt="ts-ast"></p>
 <p>这里 ts 的 ast 是基于 ts 本身编译器的 compile api 来实现的，所以结构上和 js 的会有些不同。(这里 js 用的 babel 的 parser，基于<a href="https://github.com/acornjs/acorn/tree/master/acorn" target="_blank" rel="noopener">acorn</a>)</p>
 <p>当然也可以用 js 来处理 ts 的项目，毕竟本质上就是一些字符串而已，但是 ts 提供了独立的编译 api，可以更方便地处理文件<del>(懒得搞 js)</del></p>
 <h3 id="前端应用"><a href="#前端应用" class="headerlink" title="前端应用"></a>前端应用</h3><ol>
@@ -461,7 +461,7 @@
 <li>找出页面的组件引用情况</li>
 <li>找出组件的被引用情况</li>
 </ol>
-<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p><img src="./抽象语法树(AST" alt="next-analysis">/next-analysis.png&gt;)</p>
+<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p><img src="./next-analysis.png" alt="next-analysis"></p>
 <h2 id="常用链接-amp-参考文章"><a href="#常用链接-amp-参考文章" class="headerlink" title="常用链接 &amp; 参考文章"></a>常用链接 &amp; 参考文章</h2><ul>
 <li><a href="https://astexplorer.net/" target="_blank" rel="noopener">AST Explorer</a></li>
 <li><a href="https://ts-ast-viewer.com/" target="_blank" rel="noopener">TypeScript AST Viewer</a></li>
