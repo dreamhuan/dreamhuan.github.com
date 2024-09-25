@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dreamhuan.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="开局一张图，剩下全靠编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React">
+<meta property="og:url" content="https://dreamhuan.github.io/2021/06/25/React/index.html">
+<meta property="og:site_name" content="梦幻">
+<meta property="og:description" content="开局一张图，剩下全靠编">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dreamhuan.github.io/React.png">
+<meta property="og:image" content="https://reactjs.org/static/bb4b10114882a50090b8ff61b3c4d0fd/21cdd/react_17_delegation.png">
+<meta property="og:image" content="http://img.bqb12.com/Uploads/vod/2019-10-24/gx2eqbkgtoq.jpg">
+<meta property="article:published_time" content="2021-06-25T09:31:07.000Z">
+<meta property="article:modified_time" content="2024-09-25T09:31:01.885Z">
+<meta property="article:author" content="dreamhuan">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dreamhuan.github.io/React.png">
+
+<link rel="canonical" href="https://dreamhuan.github.io/2021/06/25/React/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>React | 梦幻</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?dcb9d86bbbbb71dcf296a6a21af4c886";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">梦幻</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">dreamhuan</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dreamhuan.github.io/2021/06/25/React/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/dreamhuan.jpg">
+      <meta itemprop="name" content="dreamhuan">
+      <meta itemprop="description" content="萌新求带">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="梦幻">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-25 17:31:07" itemprop="dateCreated datePublished" datetime="2021-06-25T17:31:07+08:00">2021-06-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-09-25 17:31:01" itemprop="dateModified" datetime="2024-09-25T17:31:01+08:00">2024-09-25</time>
+              </span>
+
+          
+            <span id="/2021/06/25/React/" class="post-meta-item leancloud_visitors" data-flag-title="React" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/06/25/React/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/06/25/React/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>开局一张图，剩下全靠编</p>
+<span id="more"></span>
+
+<p><img src="/./React.png" alt="React"></p>
+<h2 id="React"><a href="#React" class="headerlink" title="React &lt;17"></a>React &lt;17</h2><h3 id="class"><a href="#class" class="headerlink" title="class"></a>class</h3><p>关键节点是 2015 年，es6 的诞生。在此之前 React 组件均是通过 React.createClass 创建，之后则可以直接用 es6 语法 extends Component 实现。从 15 年开始至今，class component 的写法深入人心，目前还占据主流地位。由此衍生出 HOC（代替原先的 mixin）、render props 等操作。</p>
+<h3 id="FIber"><a href="#FIber" class="headerlink" title="FIber"></a>FIber</h3><p>底层大重构，为未来做铺垫。<a href="https://reactjs.org/docs/codebase-overview.html#reconcilers">reconcilers</a>是 react 对于不同平台（React DOM、React Native）的通用逻辑的抽离。协调算法会控制 React 的更新、生命周期等通用过程。<a href="https://reactjs.org/docs/implementation-notes.html">Stack Reconciler</a>时代的 React 对于挂载或者更新均需要递归遍历所有组件，触发变更。更新一旦开始就无法终止。<a href="https://github.com/acdlite/react-fiber-architecture">Fiber Reconciler</a>对于每个 react component 结点抽象出 fiber 结构，用二叉树连接整个 virtual dom。引入优先级概念，把原本递归的过程变成遍历的过程，中间可被中断。当然至今（2021.6）为止中断的开关还未被打开，目前称为 legacy mode 的状态虽然用了 fiber 结构但还是无法打断任务。react18 将正式开放 concurrent mode，展现 fiber 的完整能力。</p>
+<h3 id="lifecycle"><a href="#lifecycle" class="headerlink" title="lifecycle"></a>lifecycle</h3><p>Fiber 架构下的必然情况。对于可被中断的低优先任务，打断后再执行就是从头开始，所以必然会导致相关生命周期被多次执行，所以加上了 unsafe 标记。同时补充了额外的生命周期函数，用于弥补可被中断情况下的一些行为。（getDerivedStateFromProps 也是在 render 阶段的生命周期函数，所以也会被执行多次，但是它拿不到 this）</p>
+<h3 id="hooks"><a href="#hooks" class="headerlink" title="hooks"></a>hooks</h3><p>又一个革命性变更，让 function component 真正被重视（而不是原本作为 class component 附属）hooks 让 FC 有了组件完整的能力，也使逻辑复用更加容易。</p>
+<h2 id="React-17"><a href="#React-17" class="headerlink" title="React 17"></a>React 17</h2><p>总所周知，react17 最大的新特性是没有新特性~ 然后看一眼<a href="https://reactjs.org/blog/2020/10/20/react-v17.html#changelog">changelog</a>可以往下滚好久…</p>
+<h3 id="jsx-转换"><a href="#jsx-转换" class="headerlink" title="jsx 转换"></a>jsx 转换</h3><p>在之前的版本 jsx 会被编译成 React.createElement 的调用，所以即使代码中没用到 React 也需要导入。17 之后则编译成了 jsx(xxx)的函数调用，并且自动会帮助引入 jsx 的函数，所以如果代码中没有用上 React 就真的不需要导入啦</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 17之前</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">React</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;h1&#x27;</span>, <span class="literal">null</span>, <span class="string">&#x27;Hello world&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 17之后，不需要手动加上 import React from &#x27;react&#x27;;</span></span><br><span class="line"><span class="comment">// Inserted by a compiler (don&#x27;t import it yourself!)</span></span><br><span class="line"><span class="keyword">import</span> &#123; jsx <span class="keyword">as</span> _jsx &#125; <span class="keyword">from</span> <span class="string">&#x27;react/jsx-runtime&#x27;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">_jsx</span>(<span class="string">&#x27;h1&#x27;</span>, &#123; <span class="attr">children</span>: <span class="string">&#x27;Hello world&#x27;</span> &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>关于 jsx 函数相对于 React.createElement 的额外改动可以看<a href="https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md#detailed-design">这个 rfc</a></p>
+<h3 id="事件委托挂载点变更"><a href="#事件委托挂载点变更" class="headerlink" title="事件委托挂载点变更"></a>事件委托挂载点变更</h3><p>看图 ↓ 一般来说对业务开发没影响，甚至方便了多个 React root 的操作。但是如果用了原生的 addEventlistener 就可能出问题。</p>
+<p><img src="https://reactjs.org/static/bb4b10114882a50090b8ff61b3c4d0fd/21cdd/react_17_delegation.png" alt="React17事件委托挂载点变更"></p>
+<h3 id="去除事件池"><a href="#去除事件池" class="headerlink" title="去除事件池"></a>去除事件池</h3><p>17 之前 React 使用事件池，事件执行完毕会回收，所以某些异步行为就拿不到 e.target.value 了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">handleChange</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="title function_">setData</span>(<span class="function">(<span class="params">data</span>) =&gt;</span> (&#123;</span><br><span class="line">    ...data,</span><br><span class="line">    <span class="comment">// This crashes in React 16 and earlier:</span></span><br><span class="line">    <span class="attr">text</span>: e.<span class="property">target</span>.<span class="property">value</span>,</span><br><span class="line">  &#125;))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="useEffect-清理函数异步执行"><a href="#useEffect-清理函数异步执行" class="headerlink" title="useEffect 清理函数异步执行"></a>useEffect 清理函数异步执行</h3><p>值得注意的是，异步执行清理函数可能会导致的问题就是调用清理函数时某些 ref 的值可能已经发生变更。硬是要同步，用 useLayoutEffect</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// This is the effect itself.</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// This is its cleanup.</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="expirationTime-替换成-lanes-其实-v16-14-0-就换了"><a href="#expirationTime-替换成-lanes-其实-v16-14-0-就换了" class="headerlink" title="expirationTime 替换成 lanes(其实 v16.14.0 就换了)"></a>expirationTime 替换成 lanes(其实 v16.14.0 就换了)</h3><p>为了解决 Suspence 会阻塞其他任务的问题。（expirationTime 不能精确控制任务，只是笼统的一个大于某个时间任务全部更新。改造起来比较麻烦，lane 模型就只是用一个 31 位的数来控制优先级，优先级全部用位运算来处理。可以做到更细颗粒度的控制）</p>
+<p>具体看<a href="https://juejin.cn/post/6951206227418284063">这里</a></p>
+<h2 id="React-18-alpha"><a href="#React-18-alpha" class="headerlink" title="React 18(alpha)"></a>React 18(alpha)</h2><p><a href="https://github.com/reactwg/react-18/discussions">讨论最新进展</a></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> container = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>)</span><br><span class="line"><span class="comment">// before</span></span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, container)</span><br><span class="line"><span class="comment">// after</span></span><br><span class="line"><span class="keyword">const</span> root = <span class="title class_">ReactDOM</span>.<span class="title function_">createRoot</span>(container)</span><br><span class="line">root.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>)</span><br></pre></td></tr></table></figure>
+
+<p>虽然 Fiber、调度、并发渲染已经算是很老的概念了，但是这个模型的威力在 18 版本才开始展现出来。React 团队用两年时间改造（重写）了 Stack Reconciler 至 Fiber Reconciler 现在终于能用了 😏</p>
+<h3 id="Automatic-Batching"><a href="#Automatic-Batching" class="headerlink" title="Automatic Batching"></a>Automatic Batching</h3><p>batchedUpdates：批处理更新，总所周知，事件里面多次 setState 会合并到一起执行，这就是批处理。React 在 18 之前只有事件回调和生命周期函数内部会启动批处理，其他的地方不会比如原生事件（addEventListener）、异步行为（setTimeout、Promise）</p>
+<p>原因很简单，React 在执行事件前设置了上下文，执行后又重置了，所以异步行为发生时上下文已经不是批处理得了。至于自己绑定的事件，它不归 React 管，连设置那一步都没有…</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> batchedUpdates&lt;A, R&gt;(<span class="attr">fn</span>: <span class="function">(<span class="params">A</span>) =&gt;</span> R, <span class="attr">a</span>: A): R &#123;</span><br><span class="line">  <span class="keyword">const</span> prevExecutionContext = executionContext</span><br><span class="line">  executionContext |= <span class="title class_">BatchedContext</span> <span class="comment">// 【设置】</span></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">fn</span>(a)</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    executionContext = prevExecutionContext <span class="comment">// 【重置】</span></span><br><span class="line">    <span class="comment">// If there were legacy sync updates, flush them at the end of the outer</span></span><br><span class="line">    <span class="comment">// most batchedUpdates-like method.</span></span><br><span class="line">    <span class="keyword">if</span> (executionContext === <span class="title class_">NoContext</span>) &#123;</span><br><span class="line">      <span class="title function_">resetRenderTimer</span>()</span><br><span class="line">      <span class="title function_">flushSyncCallbacksOnlyInLegacyMode</span>()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那 18 如何实现 Automatic Batching 呢？直接不用 BatchedContext 就行了。他在第一次触发后记录 lanes，后续多次触发发现 lanes 一样就不管，lanes 不一样就调度。最后过一段时间后会执行更新。（“一段时间”由优先级决定）</p>
+<h3 id="CM-Concurrent-Mode"><a href="#CM-Concurrent-Mode" class="headerlink" title="CM(Concurrent Mode)"></a>CM(Concurrent Mode)</h3><p>只有在 18 才开放<code>ReactDOM.createRoot</code>api，用于开启<code>Concurrent Mode</code>，而原本的<code>ReactDOM.render</code>也同样保留（他的行为和原本完全一致）。Concurrent Mode 最大的区别就是任务可被打断。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// performSyncWorkOnRoot会调用该方法</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">workLoopSync</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">while</span> (workInProgress !== <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="title function_">performUnitOfWork</span>(workInProgress)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// performConcurrentWorkOnRoot会调用该方法</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">workLoopConcurrent</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">while</span> (workInProgress !== <span class="literal">null</span> &amp;&amp; !<span class="title function_">shouldYield</span>()) &#123;</span><br><span class="line">    <span class="title function_">performUnitOfWork</span>(workInProgress)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>显而易见，只是多了一个 shouldYield 的判定</p>
+<h3 id="Streaming-SSR"><a href="#Streaming-SSR" class="headerlink" title="Streaming SSR"></a>Streaming SSR</h3><p>新 api：pipeToNodeWritable。增强了 SSR 的能力，原先需要获取完整内容后通过 renderToString 实现，现在支持数据延时获取，组件懒加载（结合 Suspense）</p>
+<p><a href="https://codesandbox.io/s/festive-star-9hfqt?file=/server/render.js">示例</a></p>
+<h3 id="New-APIs"><a href="#New-APIs" class="headerlink" title="New APIs"></a>New APIs</h3><ol>
+<li><p><a href="https://github.com/reactwg/react-18/discussions/41">startTransition</a></p>
+<p>效果：标记回调函数为低优先级更新，对于 Slow rendering 和 Slow network 可以考虑使用，类似官方帮我们维护 loading 了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; startTransition, useTransition &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [isPending, startTransition] = <span class="title function_">useTransition</span>(&#123; <span class="attr">timeoutMs</span>: <span class="number">2000</span> &#125;)</span><br><span class="line">  <span class="comment">// 用hook的会透出一个pedding状态，不需要的话可以直接用React暴露的startTransition</span></span><br><span class="line">  <span class="title function_">startTransition</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">setSearchQuery</span>(input)</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;isPending ? &#x27; Loading...&#x27; : null&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 伪代码，只是开启一个标记而已。代码均为同步执行，这个标记降低了任务的优先级</span></span><br><span class="line"><span class="keyword">let</span> isInTransition = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">startTransition</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">  isInTransition = <span class="literal">true</span></span><br><span class="line">  <span class="title function_">fn</span>()</span><br><span class="line">  isInTransition = <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">setState</span>(<span class="params">value</span>) &#123;</span><br><span class="line">  stateQueue.<span class="title function_">push</span>(&#123;</span><br><span class="line">    <span class="attr">nextState</span>: value,</span><br><span class="line">    <span class="attr">isTransition</span>: isInTransition,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>useDeferredValue</p>
+<p>相当于官方 debounce，值得注意的是 timeoutMs 并不是延时多久触发而是最长延时。如果组件性能好的话这个延时几乎可以忽略（所以并不能替代 debonce 本身）。使用场景是对于复杂组件渲染导致影响了输入的交互，可以适当延时渲染保证输入的流畅性（某种程度上牺牲一致性）另外，这个 api 某种程度上是对上面那个的补充，几乎可以用上面那个实现同样功能</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [text, setText] = <span class="title function_">useState</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> deferredText = <span class="title function_">useDeferredValue</span>(text, &#123; <span class="attr">timeoutMs</span>: <span class="number">2000</span> &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;App&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;/* Keep passing the current text to the input */&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">value</span>=<span class="string">&#123;text&#125;</span> <span class="attr">onChange</span>=<span class="string">&#123;handleChange&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      ...</span></span><br><span class="line"><span class="language-xml">      &#123;/* But the list is allowed to &quot;lag behind&quot; when necessary */&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">MySlowList</span> <span class="attr">text</span>=<span class="string">&#123;deferredText&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>demo：<a href="https://codesandbox.io/s/pensive-shirley-wkp46">before</a> <a href="https://codesandbox.io/s/infallible-dewdney-9fkv9">after</a></p>
+</li>
+<li><p>Suspense</p>
+<p>这玩意大家比较熟就不多说了，18 增加了 SSR 的 Suspense 能力（需要新的 SSR api 才能支持）</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; lazy &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Comments</span> = <span class="title function_">lazy</span>(<span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;./Comments.js&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">;<span class="language-xml"><span class="tag">&lt;<span class="name">Suspense</span> <span class="attr">fallback</span>=<span class="string">&#123;</span>&lt;<span class="attr">Spinner</span> /&gt;</span>&#125;&gt;</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">Comments</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">Suspense</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="RFC"><a href="#RFC" class="headerlink" title="RFC"></a>RFC</h2><p><a href="https://github.com/reactjs/rfcs/pulls">React rfc 仓库</a></p>
+<blockquote>
+<p><strong>请求意见稿</strong>（英语：<strong>R</strong>equest <strong>f</strong>or <strong>C</strong>omments，缩写：<strong>RFC</strong>），又翻译作<strong>意见征求</strong>，<strong>意见请求</strong>，<strong>请求评论</strong>[<a href="https://zh.wikipedia.org/wiki/RFC#cite_note-1">1]</a>是由<a href="https://zh.wikipedia.org/wiki/%E4%BA%92%E8%81%94%E7%BD%91%E5%B7%A5%E7%A8%8B%E4%BB%BB%E5%8A%A1%E7%BB%84">互联网工程任务组</a>（IETF）发布的一系列<a href="https://zh.wikipedia.org/wiki/%E5%82%99%E5%BF%98%E9%8C%84">备忘录</a>。文件收集了有关<a href="https://zh.wikipedia.org/wiki/%E7%B6%B2%E9%9A%9B%E7%B6%B2%E8%B7%AF">互联网</a>相关信息，以及<a href="https://zh.wikipedia.org/wiki/UNIX">UNIX</a>和互联网<a href="https://zh.wikipedia.org/wiki/%E7%A4%BE%E7%BE%A4">社区</a>的软件文件，以编号排定。目前RFC文件是由<a href="https://zh.wikipedia.org/wiki/%E4%BA%92%E8%81%94%E7%BD%91%E5%8D%8F%E4%BC%9A">互联网协会</a>（ISOC）<a href="https://zh.wikipedia.org/wiki/%E8%B4%8A%E5%8A%A9">赞助</a>发行。</p>
+</blockquote>
+<p>以上是维基百科定义的 RFC。现在广义的 RFC 更倾向于类似“js 提案”的概念，由开发团队或者协作维护者发起的对于一项有重大影响的变更的文档说明，开放给社区讨论，大家一起头脑风暴完善这个“提案”（采纳或否定由开发组决定）</p>
+<h3 id="React-Server-Components"><a href="#React-Server-Components" class="headerlink" title="React Server Components"></a>React Server Components</h3><p>RSC 基本思路某种意义上可以类比 HMR（热更新），只不过 HMR 是服务端检测到文件变更后主动把变更后的 chunk 发送客户端，RSC 是触发某些交互后请求服务端，由服务端执行具体的逻辑，最后把渲染完的组件 chunk 发送到客户端再由客户端启动更新。这样的好处是显而易见的，组件可以保存状态，同时减轻浏览器压力（当然相当于压力转移到了服务端），还能减小包体积。</p>
+<p>描述：<a href="https://github.com/josephsavona/rfcs/blob/server-components/text/0000-server-components.md#update-refetch-sequence">RFC: React Server Components</a></p>
+<p>讨论：<a href="https://github.com/reactjs/rfcs/pull/188">(PR)RFC: React Server Components</a></p>
+<p><a href="https://react-server-components.musicfe.dev/">在线体验</a></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// NodeEditor.client.js - Client Component</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">NoteEditor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> note = props.<span class="property">note</span></span><br><span class="line">  <span class="keyword">const</span> [title, setTitle] = <span class="title function_">useState</span>(note.<span class="property">title</span>)</span><br><span class="line">  <span class="keyword">const</span> [body, setBody] = <span class="title function_">useState</span>(note.<span class="property">body</span>)</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">updateTitle</span> = (<span class="params">event</span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">setTitle</span>(event.<span class="property">target</span>.<span class="property">value</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">updateBody</span> = (<span class="params">event</span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">setTitle</span>(event.<span class="property">target</span>.<span class="property">value</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">submit</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="comment">// ...save note...</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;...&quot;</span> <span class="attr">method</span>=<span class="string">&quot;...&quot;</span> <span class="attr">onSubmit</span>=<span class="string">&#123;submit&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;title&quot;</span> <span class="attr">onChange</span>=<span class="string">&#123;updateTitle&#125;</span> <span class="attr">value</span>=<span class="string">&#123;title&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">&quot;body&quot;</span> <span class="attr">onChange</span>=<span class="string">&#123;updateBody&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        &#123;body&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Note.server.js - Server Component</span></span><br><span class="line"><span class="keyword">import</span> db <span class="keyword">from</span> <span class="string">&#x27;db.server&#x27;</span></span><br><span class="line"><span class="comment">// (A1) We import from NoteEditor.client.js - a Client Component.</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">NoteEditor</span> <span class="keyword">from</span> <span class="string">&#x27;NoteEditor.client&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Note</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; id, isEditing &#125; = props</span><br><span class="line">  <span class="comment">// (B) Can directly access server data sources during render, e.g. databases</span></span><br><span class="line">  <span class="keyword">const</span> note = db.<span class="property">posts</span>.<span class="title function_">get</span>(id)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;note.title&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">section</span>&gt;</span>&#123;note.body&#125;<span class="tag">&lt;/<span class="name">section</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;/* (A2) Dynamically render the editor only if necessary */&#125;</span></span><br><span class="line"><span class="language-xml">      &#123;isEditing ? <span class="tag">&lt;<span class="name">NoteEditor</span> <span class="attr">note</span>=<span class="string">&#123;note&#125;</span> /&gt;</span> : null&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>所以，跟 SSR 的区别是什么？</p>
+<ol>
+<li>SSR 是在 Server 进行渲染，然后把渲染得到的 HTML 返回给 Client；而这个 Server Component，所有组件，不管 Server 组件还是 Client 组件，都是在 Client 进行渲染。只不过 Server 组件会自带一些在 Server 端获取的数据放在 props 里，这样就不用在 Client 再进行请求了。</li>
+<li>SSR 因为每个请求都是一个新的 HTML，就相当于两个应用，你的应用都变了，那你原来应用里的状态肯定都丢了；但是 Server Component 不管你向 Server 请求多少次，都是同一个 HTML，同一个应用，你的状态不会丢。</li>
+</ol>
+<p>如何结合使用？</p>
+<p>你会发现，使用 Server Component 是完全没法 SEO 的，因为 Server 返回的不是 HTML。其实官方也提过，我们可以结合起来用：</p>
+<ol>
+<li>我们的首页请求 Server 的&#x2F;路径，这个路径对应的是 SSR 渲染</li>
+<li>Client 拿到 SSR 返回 HTML 后，后续的组件，请求 Server 的&#x2F;component 路径，这个路径对应的是 Server Component</li>
+</ol>
+<p>作者：达达 XxjzZ<br>链接：<a href="https://www.zhihu.com/question/435921124/answer/1641235418">https://www.zhihu.com/question/435921124/answer/1641235418</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+<p>END</p>
+<p><img src="http://img.bqb12.com/Uploads/vod/2019-10-24/gx2eqbkgtoq.jpg" alt="学不动了"></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/">React 生命周期图</a></p>
+<p><a href="https://juejin.cn/post/6894204813970997256">十五分钟读懂 React 17</a></p>
+<p><a href="https://reactjs.org/blog/2020/08/10/react-v17-rc.html#other-breaking-changes">React v17.0 Release Candidate: No New Features</a></p>
+<p><a href="https://blog.openreplay.com/react-18-is-out-this-is-what-you-need-to-know">React 18 Is Out! This Is What You Need to Know</a></p>
+<p><a href="https://reactjs.org/docs/concurrent-mode-patterns.html">Concurrent UI Patterns (Experimental)</a></p>
+<p><a href="https://mp.weixin.qq.com/s/yXXnPc43VyvJs0bpiIpJzQ">Automatic batching</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzkzMjIxNTcyMA==&mid=2247486768&idx=1&sn=c749b954277674d71aaac94e9362f15e&chksm=c25e63f7f529eae1b2f9503dbb0e888f65445322a418d4535fda94b080032ed58a566a9b02d7&cur_album_id=1783121402896678912&scene=189#rd">startTransition</a> (<a href="https://react-fractals-git-react-18-swizec.vercel.app/">demo</a>)</p>
+<p><a href="https://github.com/reactwg/react-18/discussions/65">Real world example: adding startTransition for slow renders</a></p>
+<p><a href="https://github.com/reactwg/react-18/discussions/37">New Suspense SSR Architecture in React 18</a></p>
+<p><a href="https://betterprogramming.pub/the-future-of-react-server-components-90f6e3e97c8a">The Future of React: Server Components</a></p>
+<p><a href="https://reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html">Introducing Zero-Bundle-Size React Server Components</a></p>
+<p><a href="https://www.zhihu.com/question/435921124">如何看待 React Server Components？</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/25/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" rel="prev" title="git从入门到放弃">
+      <i class="fa fa-chevron-left"></i> git从入门到放弃
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#React"><span class="nav-number">1.</span> <span class="nav-text">React &lt;17</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#class"><span class="nav-number">1.1.</span> <span class="nav-text">class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FIber"><span class="nav-number">1.2.</span> <span class="nav-text">FIber</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lifecycle"><span class="nav-number">1.3.</span> <span class="nav-text">lifecycle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hooks"><span class="nav-number">1.4.</span> <span class="nav-text">hooks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-17"><span class="nav-number">2.</span> <span class="nav-text">React 17</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jsx-%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.1.</span> <span class="nav-text">jsx 转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98%E6%8C%82%E8%BD%BD%E7%82%B9%E5%8F%98%E6%9B%B4"><span class="nav-number">2.2.</span> <span class="nav-text">事件委托挂载点变更</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%BB%E9%99%A4%E4%BA%8B%E4%BB%B6%E6%B1%A0"><span class="nav-number">2.3.</span> <span class="nav-text">去除事件池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useEffect-%E6%B8%85%E7%90%86%E5%87%BD%E6%95%B0%E5%BC%82%E6%AD%A5%E6%89%A7%E8%A1%8C"><span class="nav-number">2.4.</span> <span class="nav-text">useEffect 清理函数异步执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#expirationTime-%E6%9B%BF%E6%8D%A2%E6%88%90-lanes-%E5%85%B6%E5%AE%9E-v16-14-0-%E5%B0%B1%E6%8D%A2%E4%BA%86"><span class="nav-number">2.5.</span> <span class="nav-text">expirationTime 替换成 lanes(其实 v16.14.0 就换了)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-18-alpha"><span class="nav-number">3.</span> <span class="nav-text">React 18(alpha)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Automatic-Batching"><span class="nav-number">3.1.</span> <span class="nav-text">Automatic Batching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CM-Concurrent-Mode"><span class="nav-number">3.2.</span> <span class="nav-text">CM(Concurrent Mode)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Streaming-SSR"><span class="nav-number">3.3.</span> <span class="nav-text">Streaming SSR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#New-APIs"><span class="nav-number">3.4.</span> <span class="nav-text">New APIs</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RFC"><span class="nav-number">4.</span> <span class="nav-text">RFC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#React-Server-Components"><span class="nav-number">4.1.</span> <span class="nav-text">React Server Components</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">5.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="dreamhuan"
+      src="/images/dreamhuan.jpg">
+  <p class="site-author-name" itemprop="name">dreamhuan</p>
+  <div class="site-description" itemprop="description">萌新求带</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dreamhuan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dreamhuan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:fu_kaiqi@qq.com" title="E-Mail → mailto:fu_kaiqi@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">dreamhuan</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"lRR7RSSE3REHSKHORbXabbjR-gzGzoHsz","app_key":"8yMQK4RGLR0tKJXe5eoKVOyF","server_url":null,"security":true};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 8026,
+      el    : 'wpac-rating',
+      color : 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://dreamhuan.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://dreamhuan.github.io/2021/06/25/React/";
+    this.page.identifier = "2021/06/25/React/";
+    this.page.title = "React";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://dreamhuan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
