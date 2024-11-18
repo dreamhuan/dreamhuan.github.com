@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dreamhuan.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Abstract syntax tree  In computer science, an abstract syntax tree (AST), or just syntax tree, is a tree representation of the abstract syntactic structure of source code written in a programming lang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抽象语法树(abstract syntax tree, AST)">
+<meta property="og:url" content="https://dreamhuan.github.io/2021/05/10/%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91(AST)/index.html">
+<meta property="og:site_name" content="梦幻">
+<meta property="og:description" content="Abstract syntax tree  In computer science, an abstract syntax tree (AST), or just syntax tree, is a tree representation of the abstract syntactic structure of source code written in a programming lang">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dreamhuan.github.io/Abstract_syntax_tree_for_Euclidean_algorithm.svg">
+<meta property="og:image" content="http://qiankunli.github.io/public/upload/basic/compile_process.jpg">
+<meta property="og:image" content="http://qiankunli.github.io/public/upload/basic/javascript_ast.png">
+<meta property="og:image" content="https://dreamhuan.github.io/add-ast.png">
+<meta property="og:image" content="https://dreamhuan.github.io/ts-ast.png">
+<meta property="og:image" content="https://dreamhuan.github.io/next-analysis.png">
+<meta property="article:published_time" content="2021-05-10T13:42:41.000Z">
+<meta property="article:modified_time" content="2024-11-08T07:32:34.542Z">
+<meta property="article:author" content="dreamhuan">
+<meta property="article:tag" content="front-end">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dreamhuan.github.io/Abstract_syntax_tree_for_Euclidean_algorithm.svg">
+
+<link rel="canonical" href="https://dreamhuan.github.io/2021/05/10/%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91(AST)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>抽象语法树(abstract syntax tree, AST) | 梦幻</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?dcb9d86bbbbb71dcf296a6a21af4c886";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">梦幻</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">dreamhuan</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dreamhuan.github.io/2021/05/10/%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91(AST)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/dreamhuan.jpg">
+      <meta itemprop="name" content="dreamhuan">
+      <meta itemprop="description" content="萌新求带">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="梦幻">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          抽象语法树(abstract syntax tree, AST)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-10 21:42:41" itemprop="dateCreated datePublished" datetime="2021-05-10T21:42:41+08:00">2021-05-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-11-08 15:32:34" itemprop="dateModified" datetime="2024-11-08T15:32:34+08:00">2024-11-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/front-end/" itemprop="url" rel="index"><span itemprop="name">front-end</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/05/10/%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91(AST)/" class="post-meta-item leancloud_visitors" data-flag-title="抽象语法树(abstract syntax tree, AST)" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/05/10/%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91(AST)/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/05/10/抽象语法树(AST)/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract syntax tree</a></p>
+<blockquote>
+<p>In <a href="https://en.wikipedia.org/wiki/Computer_science">computer science</a>, an <strong>abstract syntax tree</strong> (<strong>AST</strong>), or just <strong>syntax tree</strong>, is a <a href="https://en.wikipedia.org/wiki/Directed_tree">tree</a> representation of the <a href="https://en.wikipedia.org/wiki/Abstract_syntax">abstract syntactic</a> structure of <a href="https://en.wikipedia.org/wiki/Source_code">source code</a> written in a <a href="https://en.wikipedia.org/wiki/Programming_language">programming language</a>. Each node of the tree denotes a construct occurring in the source code.</p>
+</blockquote>
+<p>抽象语法树（AST）就是由代码本身解析得到的一个树形结构</p>
+<span id="more"></span>
+
+<p>直接盗用 wikipedia 的图</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> b ≠ <span class="number">0</span></span><br><span class="line">  <span class="keyword">if</span> a &gt; b</span><br><span class="line">    a := a − b</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    b := b − a</span><br><span class="line"><span class="keyword">return</span> a</span><br></pre></td></tr></table></figure>
+
+<p><img src="/./Abstract_syntax_tree_for_Euclidean_algorithm.svg" alt="Abstract_syntax_tree_for_Euclidean_algorithm"><br><a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">图片来源</a></p>
+<h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><p>至于为什么会有这么一个东西以及怎么来的就要祭出我们的编译原理了：</p>
+<p><img src="http://qiankunli.github.io/public/upload/basic/compile_process.jpg" alt="compile_process"><br><a href="http://qiankunli.github.io/2020/02/08/fundamentals_of_compiling_frontend.html">图片来源</a></p>
+<p>高级语言需要经过以上步骤才能被计算机识别并执行，ast 就是前端（编译原理上的“前端”）的产物，解释型语言的后端往往被虚拟机替代了，不会直接生成二进制文件。ast 包含了代码的全部信息，按一定规则解析 ast 就可以得到目标程序，可以说 ast 就是“结构化”后的代码。</p>
+<p><img src="http://qiankunli.github.io/public/upload/basic/javascript_ast.png" alt="javascript_ast"><br><a href="http://qiankunli.github.io/2020/02/08/fundamentals_of_compiling_frontend.html">图片来源</a></p>
+<h3 id="js-与-ts-的区别"><a href="#js-与-ts-的区别" class="headerlink" title="js 与 ts 的区别"></a>js 与 ts 的区别</h3><p><del>没啥区别</del></p>
+<p>不能说十分相似只能说完全一样！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/./add-ast.png" alt="add-ast"></p>
+<p>然而 ts 多了类型系统，所以在 ast 上也会有相应的结点来体现，比如</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params"><span class="attr">a</span>: <span class="built_in">number</span>, <span class="attr">b</span>: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/./ts-ast.png" alt="ts-ast"></p>
+<p>这里 ts 的 ast 是基于 ts 本身编译器的 compile api 来实现的，所以结构上和 js 的会有些不同。(这里 js 用的 babel 的 parser，基于<a href="https://github.com/acornjs/acorn/tree/master/acorn">acorn</a>)</p>
+<p>当然也可以用 js 来处理 ts 的项目，毕竟本质上就是一些字符串而已，但是 ts 提供了独立的编译 api，可以更方便地处理文件<del>(懒得搞 js)</del></p>
+<h3 id="前端应用"><a href="#前端应用" class="headerlink" title="前端应用"></a>前端应用</h3><ol>
+<li><p>es6 转 es5（不完全可以）</p>
+</li>
+<li><p><del>偷懒</del>语法转换（babel-plugin-import 这类）</p>
+</li>
+<li><p>引用分析</p>
+</li>
+<li><p><del>小程序热更新</del></p>
+</li>
+</ol>
+<h2 id="示例：BigInt-babel-插件"><a href="#示例：BigInt-babel-插件" class="headerlink" title="示例：BigInt babel 插件"></a>示例：BigInt babel 插件</h2><p><a href="https://github.com/dreamhuan/bigint">https://github.com/dreamhuan/bigint</a></p>
+<h3 id="开源的完整版"><a href="#开源的完整版" class="headerlink" title="开源的完整版"></a>开源的完整版</h3><p><a href="https://github.com/dreamhuan/bigint/blob/master/babel-plugin-transform-bigint.js">见代码</a></p>
+<h3 id="手动简陋版"><a href="#手动简陋版" class="headerlink" title="手动简陋版"></a>手动简陋版</h3><p><a href="https://github.com/dreamhuan/bigint/blob/master/index.js">见代码</a></p>
+<h2 id="小工具：静态引用分析"><a href="#小工具：静态引用分析" class="headerlink" title="小工具：静态引用分析"></a>小工具：静态引用分析</h2><p><a href="https://github.com/dreamhuan/next-analysis">https://github.com/dreamhuan/next-analysis</a></p>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ol>
+<li>找出项目中没有被引用的文件</li>
+<li>找出页面的组件引用情况</li>
+<li>找出组件的被引用情况</li>
+</ol>
+<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p><img src="/./next-analysis.png" alt="next-analysis"></p>
+<h2 id="常用链接-参考文章"><a href="#常用链接-参考文章" class="headerlink" title="常用链接 &amp; 参考文章"></a>常用链接 &amp; 参考文章</h2><ul>
+<li><a href="https://astexplorer.net/">AST Explorer</a></li>
+<li><a href="https://ts-ast-viewer.com/">TypeScript AST Viewer</a></li>
+<li><a href="https://github.com/jamiebuilds/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md">Babel 插件手册</a></li>
+<li><a href="https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API">Using the Compiler API</a></li>
+<li><a href="https://chengyuming.cn/views/webpack/AST.html">AST 团队分享</a></li>
+<li><a href="https://learning-notes.mistermicheels.com/javascript/typescript/compiler-api/">Compiler API (TypeScript)</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/30360931">手把手教写 TypeScript Transformer Plugin</a></li>
+<li><a href="https://daief.tech/2019-02-01/the-first-time-i-learn-ast.html">初识 AST</a></li>
+<li><a href="http://qiankunli.github.io/2020/02/08/fundamentals_of_compiling_frontend.html">《编译原理之美》笔记——前端部分</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/34191831">微信小程序也要强行热更代码，鹅厂不服你来肛我呀</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/front-end/" rel="tag"># front-end</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/02/%E6%B5%AE%E7%82%B9%E6%95%B0/" rel="prev" title="浮点数">
+      <i class="fa fa-chevron-left"></i> 浮点数
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/25/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" rel="next" title="git从入门到放弃">
+      git从入门到放弃 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">编译原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js-%E4%B8%8E-ts-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">js 与 ts 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E5%BA%94%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">前端应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9ABigInt-babel-%E6%8F%92%E4%BB%B6"><span class="nav-number"></span> <span class="nav-text">示例：BigInt babel 插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E6%BA%90%E7%9A%84%E5%AE%8C%E6%95%B4%E7%89%88"><span class="nav-number">1.</span> <span class="nav-text">开源的完整版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E7%AE%80%E9%99%8B%E7%89%88"><span class="nav-number">2.</span> <span class="nav-text">手动简陋版</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E5%B7%A5%E5%85%B7%EF%BC%9A%E9%9D%99%E6%80%81%E5%BC%95%E7%94%A8%E5%88%86%E6%9E%90"><span class="nav-number"></span> <span class="nav-text">小工具：静态引用分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E7%9A%84"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%B6%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E9%93%BE%E6%8E%A5-%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number"></span> <span class="nav-text">常用链接 &amp; 参考文章</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="dreamhuan"
+      src="/images/dreamhuan.jpg">
+  <p class="site-author-name" itemprop="name">dreamhuan</p>
+  <div class="site-description" itemprop="description">萌新求带</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dreamhuan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dreamhuan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:fu_kaiqi@qq.com" title="E-Mail → mailto:fu_kaiqi@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">dreamhuan</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"lRR7RSSE3REHSKHORbXabbjR-gzGzoHsz","app_key":"8yMQK4RGLR0tKJXe5eoKVOyF","server_url":null,"security":true};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 8026,
+      el    : 'wpac-rating',
+      color : 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://dreamhuan.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://dreamhuan.github.io/2021/05/10/%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91(AST)/";
+    this.page.identifier = "2021/05/10/抽象语法树(AST)/";
+    this.page.title = "抽象语法树(abstract syntax tree, AST)";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://dreamhuan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

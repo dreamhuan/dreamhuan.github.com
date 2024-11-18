@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dreamhuan.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="在有赞共享前端实习了半年（18.7-19.1）总结下自我的收获和实习的体验。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实习总结">
+<meta property="og:url" content="https://dreamhuan.github.io/2019/01/31/%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="梦幻">
+<meta property="og:description" content="在有赞共享前端实习了半年（18.7-19.1）总结下自我的收获和实习的体验。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-01-31T15:52:26.000Z">
+<meta property="article:modified_time" content="2024-11-08T07:32:34.542Z">
+<meta property="article:author" content="dreamhuan">
+<meta property="article:tag" content="life">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://dreamhuan.github.io/2019/01/31/%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>实习总结 | 梦幻</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?dcb9d86bbbbb71dcf296a6a21af4c886";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">梦幻</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">dreamhuan</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dreamhuan.github.io/2019/01/31/%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/dreamhuan.jpg">
+      <meta itemprop="name" content="dreamhuan">
+      <meta itemprop="description" content="萌新求带">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="梦幻">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          实习总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-01-31 23:52:26" itemprop="dateCreated datePublished" datetime="2019-01-31T23:52:26+08:00">2019-01-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-11-08 15:32:34" itemprop="dateModified" datetime="2024-11-08T15:32:34+08:00">2024-11-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/life/" itemprop="url" rel="index"><span itemprop="name">life</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/01/31/%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/" class="post-meta-item leancloud_visitors" data-flag-title="实习总结" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2019/01/31/%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/31/实习总结/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在有赞共享前端实习了半年（18.7-19.1）总结下自我的收获和实习的体验。</p>
+<span id="more"></span>
+
+<p>首先是环境，用了 nvm 来控制 node 的版本，async&#x2F;await 只有 node8+才能用，新的项目都统一用 8.x，旧的项目用的是 node6 的（node 端不过 babel 编译，直接运行）。第一次使用 mac 对命令行不是很熟，配了下 iterm2 和 ohmyzsh，发现 mac 下的命令行真好用…原本 IDEA 的深度用户的我在接触了 vscode+iterm2 后表示真香～后来就是日常 iterm2 分 4 屏然后开 3-4 个 vscode。。。</p>
+<p>然后是各种账号权限，本地生成了 rsa 加到 keychain，然后 ssh 连服务器，服务器环境有开发、测试、预发、线上，一般情况下用专门的发布平台来部署到对应的机器，极端情况需要直接 ssh 连服务器调试代码。内部系统比较多，包括代码仓库、文档系统、bug 跟踪、发布系统、项目跟踪、线上监控等，刚接触的时候一脸懵逼，每个平台都深入使用过才了解。有些平台是内部开发维护的，有些是购买的比如 jira。每个系统都有自己的功能，不同系统用在开发的不同阶段，提高效率。</p>
+<p>我在 PC 组，一开始主要是熟悉开发套路，所以就是改改文案改改样式，把整个收到 bug 到修复 bug 到上线的流程走一遍。PC 端用的 React 全家桶，在学校时我主要写 Angular，所以赶紧花时间把 React 官网过了一遍。接手的第一个项目是 UI 改写。有个单独的平台原本是前端凭感觉做的，现在设计给了稿子，就需要把整体 UI 按照设计给的稿子做一遍。因为使用了 style-components，所以顺便学习了一下 css in js 的套路，感觉对组件的抽象要求比较高，有些样式有多种方案的需要考虑组件复用性高的方案。通过这个项目，对 React 开发也算入了门。后面几个项目涉及到数据请求，以及逻辑处理，更加深了对 React 的理解，期间看了《深入浅出 React 和 Redux》是我受益匪浅。然而有赞 PC 是多页中的单页，由 node 渲染基础模版，然后留一个 div 给 react 渲染组件。所以每个单页应用不是很复杂，也没必要使用 Redux 了。最后前端代码打包完上传到 cdn，留一个 hash 塞入 node 层模版中，所以 node 层也可以直接塞一些数据在 global 下，可以节省一些异步请求。</p>
+<p>因为按业务划分，我是做会员业务的，所以 h5 和小程序的个人中心后来也从移动组划到了我们这里（据说是因为人不够？？）于是我就开始写 Vue 了。。。（h5 是 Vue 全家桶）主要就是一个个人中心页面。UI 上还好，没有什么比较骚的操作，有意思的地方在整体页面样子要根据 PC 后台的配置来，整个就是店铺装修的套路。另外 PC 端还需要展示预览效果，所以需要把整个页面分拆成组件后打包发布，以便于 PC 端使用。h5 要根据 PC 的配置比如主题色、组件位置、插件显示模式等。所以整个使用了 Vue 的动态组件，从后端读取 PC 上修改的页面配置，根据配置渲染不同的组件，对于有些组件需要另外的参数控制显示效果也是从配置中读取的。读取完配置后初始化 Vuex 的 store，UI 组件再根据 Vuex 的 state 渲染不同的样式。打包给 PC 的那份组件在提供默认的 Store。另外 PC 端在 React 里渲染 Vue 的组件个人感觉也比较骚，然而遗憾的是米有机会看他的源码就离职了。。。</p>
+<p>然后是个人中心页面的小程序版本，UI 上和 h5 一致，技术上也没啥难点，就是体验了下小程序开发，小程序整体开发体验上和 shadowDOM 比较相似，但是因为微信提供的小程序框架基本上是个黑盒子，有些 api 的错误也很难查找原因，只能跟微信的人咨询，这种感觉就很蛋疼。在开发中曾经出现过一个调用微信的 api 报没有权限的 error，搞了好久才弄好，真是令人心力憔悴。。。</p>
+<p>业务部分讲完了，讲讲技术部分把，也站在上层回顾下有赞前端的技术架构。首先，后端是基于 dubbo 的微服务架构，然后内部用 go 实现了一个代理框架 Tether 暴露一个 http 服务，微服务相关的部分都由 Tether 来处理（服务发现服务调用负载均衡等），暴露的 http 服务是让 node 调用的，比如 node 发一个 <code>POST www.demo.com:6666/i.am.a.long.package.name/iAmAServiceName.functionName</code> 到 Tether，Tether 会解析这个请求，然后转发到对应包名类名方法名的 java 接口（参数视 java 借口而定）并把 java 返回的数据过一层解析和封装，变成<code>&#123;code:200,data:&#123;k:666&#125;,message:&#39;xxx&#39;&#125;</code>的形式返回给 node。前端部分是 node + React&#x2F;Vue 的结构，node 部分是基于 koa 分装的 Astroboy 框架，已开源。在 Astroboy 基础上包装了业务层框架 youzan-framework。加了底层把业务方法调用改成 http 调用的形式。比如上面的 <code>POST www.demo.com:6666/i.am.a.long.package.name/iAmAServiceName.functionName</code>，开发者只需要写 <code>this.invoke(&#39;i.am.a.long.package.name.iAmAServiceName&#39;,&#39;functionName&#39;,[param1,param2])</code>youzan-framework 除了做方法解析，还针对 http 调用做了一些设置比如超时或者一些特定请求头等。在 youzan-framework 之上又针对不同的业务线（toB、toC）封装了两个不同的上层业务框架。因为有赞的业务 toB 部分基本是 PC 后台，toC 部分就是 h5 相关，所以这两业务框架基本 PC 的一套 h5 的一套，里面封装了不同的登陆态获取方式等。当然也有 toB 的 h5 页面（我当时做过一个），所以就会出现一个仓库既有 React 又有 Vue 的尴尬…但是他们基本不相干，就加两份打包配置而已…这三个框架都属于 node 层底层框架，业务开发基于他们进行。前端页面部分整体不是一个 SPA 而是多页中的单页。node 会渲染页面模板给浏览器，同时预留一个类似<code>&lt;div id=&#39;app-root&#39;&gt;&lt;/div&gt;</code>给 React&#x2F;Vue 来挂载。然后对于 PC 端部分，整个一级导航的每个项都有一个代码仓库，用 nginx 针对不同 url 来转发。可以做到独立开发独立部署。一个代码仓库负责一个一级导航下的整个二级导航。基本上每个二级导航都对应了 node 层一个模板页面，对于有三级导航的大多是 SPA 了。三级导航的 router 就由前端来控制。前端页面开发完后，会把 webpack 打包结果上传到 cdn，并把 hash 值写入配置文件。node 层渲染模板的时候会去读取配置文件的 hash 值，拼接成 cdn 的完整 url，并加到模板的 script 标签上。当然这一切都有 cli 负责整个流程的自动化进行。</p>
+<p>最后讲讲有赞的技术积累。它有 zan-proxy、zan-api 等提高开发效率的工具也有 zent、vant 等组件库，还有比较丰富的文档网站。可以说在积累上是比较富裕的。zan-proxy 主要用于代理某些请求到本地，之前提了有赞是多个仓库通过 nginx 代理的，所以不可能本地跑整站的代码，就可以把具体业务部分的页面代理到本地的 node 服务进行调试开发。当然直接只运行这部分页面在本地开发也是可以的，但是有些需要依赖 cookie 等，使用代理可以更好的贴近线上的模式。它的原理是通过配置正则，符合某个正则模式的请求就会代理到本地某个端口暴露的服务。具体点比如 <a href="http://www.baidu.com/">www.baidu.com</a> 的 GET 请求代理到 localhost:8080 的 node 服务，这样别的还是会走线上的，进入到符合正则匹配的 url 时就走本地的了。zan-api 主要用于前后端接口定义，配合 zan-proxy 可以实现前端通过接口测试后联调时几乎不用再改前端代码，当然具体的 mock 数据需要自己编写。具体原理是某个接口的请求就走到一个统一的 mock 服务上，返回 mock 数据，整个过程处理数据是 mock 的别的完全一致，所以等后端开发完后只需要把这个接口的转发关掉就走到了后端那里。这两个工具个人感觉都比较使用，整体原理上也不难理解。可以较大程度提高开发效率。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/life/" rel="tag"># life</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/03/18/Rxjs%E7%AE%80%E4%BB%8B/" rel="prev" title="Rxjs简介">
+      <i class="fa fa-chevron-left"></i> Rxjs简介
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/01/31/2018%E6%80%BB%E7%BB%93/" rel="next" title="2018总结">
+      2018总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="dreamhuan"
+      src="/images/dreamhuan.jpg">
+  <p class="site-author-name" itemprop="name">dreamhuan</p>
+  <div class="site-description" itemprop="description">萌新求带</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dreamhuan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dreamhuan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:fu_kaiqi@qq.com" title="E-Mail → mailto:fu_kaiqi@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">dreamhuan</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"lRR7RSSE3REHSKHORbXabbjR-gzGzoHsz","app_key":"8yMQK4RGLR0tKJXe5eoKVOyF","server_url":null,"security":true};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 8026,
+      el    : 'wpac-rating',
+      color : 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://dreamhuan.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://dreamhuan.github.io/2019/01/31/%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/";
+    this.page.identifier = "2019/01/31/实习总结/";
+    this.page.title = "实习总结";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://dreamhuan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"dreamhuan.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="git对文件和commit的操作命令简介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git从入门到放弃">
+<meta property="og:url" content="https://dreamhuan.github.io/2021/05/25/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/index.html">
+<meta property="og:site_name" content="梦幻">
+<meta property="og:description" content="git对文件和commit的操作命令简介">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dreamhuan.github.io/1.png">
+<meta property="article:published_time" content="2021-05-25T14:48:46.000Z">
+<meta property="article:modified_time" content="2024-11-08T07:32:34.542Z">
+<meta property="article:author" content="dreamhuan">
+<meta property="article:tag" content="front-end">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dreamhuan.github.io/1.png">
+
+<link rel="canonical" href="https://dreamhuan.github.io/2021/05/25/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>git从入门到放弃 | 梦幻</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?dcb9d86bbbbb71dcf296a6a21af4c886";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">梦幻</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">dreamhuan</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dreamhuan.github.io/2021/05/25/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/dreamhuan.jpg">
+      <meta itemprop="name" content="dreamhuan">
+      <meta itemprop="description" content="萌新求带">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="梦幻">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git从入门到放弃
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-25 22:48:46" itemprop="dateCreated datePublished" datetime="2021-05-25T22:48:46+08:00">2021-05-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-11-08 15:32:34" itemprop="dateModified" datetime="2024-11-08T15:32:34+08:00">2024-11-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/front-end/" itemprop="url" rel="index"><span itemprop="name">front-end</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2021/05/25/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" class="post-meta-item leancloud_visitors" data-flag-title="git从入门到放弃" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2021/05/25/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/05/25/git从入门到放弃/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>git对文件和commit的操作命令简介</p>
+<span id="more"></span>
+
+<h2 id="oh-my-zsh-plugins"><a href="#oh-my-zsh-plugins" class="headerlink" title="oh-my-zsh plugins"></a>oh-my-zsh plugins</h2><p>FEer应该都配了iterm2、zsh、oh-my-zsh。毕竟mac的terminal难用的一笔…开始前先提oh-my-zsh的plugins是因为它默认给了个git的plugin，提供了海量alias。非常好用！</p>
+<p>oh-my-zsh源代码在<code>~/.oh-my-zsh</code>（可以通过<code>echo $ZSH</code>查看）配置文件在<code>~/.zshrc</code>。</p>
+<h3 id="git-插件提供的alias"><a href="#git-插件提供的alias" class="headerlink" title="git 插件提供的alias"></a>git 插件提供的alias</h3><p>两种方法查看</p>
+<ol>
+<li>看<code>~/.oh-my-zsh/plugins/git/README.md</code>或者同目录下的<code>git.plugin.zsh</code></li>
+<li>命令行直接输<code>alias | grep git</code>看所有的alias</li>
+</ol>
+<p>常用的status、fetch、pull、push都有简短的alias，可以用起来提高敲命令效率，并且有些alias可以看做最佳实践比如<code>alias glol=&quot;git log --graph --pretty=&#39;%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39;&quot;</code></p>
+<p>当然vscode已经有了一键显示commit history的功能了…</p>
+<h3 id="其它常用插件（还有推荐的欢迎补充）"><a href="#其它常用插件（还有推荐的欢迎补充）" class="headerlink" title="其它常用插件（还有推荐的欢迎补充）"></a>其它常用插件（还有推荐的欢迎补充）</h3><ul>
+<li><p>wd：设置路径别名，可以直接到达</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">~/work/developer-product $ wd add pro</span><br><span class="line">~/work/developer-product $ wd list</span><br><span class="line"> * All warp points:</span><br><span class="line">pro  -&gt;  ~/work/developer-product</span><br><span class="line">~/work/developer-product $ <span class="built_in">cd</span> ~</span><br><span class="line">~ $ wd pro</span><br><span class="line">~/work/developer-product $</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>z：记录路径频率，之后输入路径部分名字就可以进入（和autojump一样效果，就是z不用另外安装）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">~ $ z pro</span><br><span class="line">~/work/developer-product $</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-syntax-highlighting</a>（需要另外安装）：命令高亮</p>
+</li>
+<li><p><a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-autosuggestions</a>（需要另外安装）：记录历史输入的命令并提供输入建议，按→上屏</p>
+</li>
+<li><p>last-working-dir：打开新的session自动到当前目录（当前目录指的是最后cd的目录，不是当前窗口的目录）</p>
+</li>
+</ul>
+<p>不用另外安装的直接在<code>~/.zshrc</code>的plugins&#x3D;(git xxx)里面写就好了，空格分隔。要另外安装的除了要在这里面写一下以外还有clone相应代码到<code>oh-my-zsh</code>的custom的plugins下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure>
+
+<h2 id="对文件的操作【全都是高危命令】"><a href="#对文件的操作【全都是高危命令】" class="headerlink" title="对文件的操作【全都是高危命令】"></a>对文件的操作【全都是高危命令】</h2><p>首先解释下“高危命令”，就是会使你的代码找不回来的命令，所以每一个都要想清楚在使用！</p>
+<p>对于覆盖workspace的命令vscode可以直接撤销编辑，所以建议在打开vscode并且打开那个文件的情况下使用，手滑了还能撤销…（这里推荐下vscode一个插件Local History，会隔一段时间记录文件变动）</p>
+<p>三个区域命名约定：工作区：workspace；暂存区：index；仓库的某个分支：branch。</p>
+<p>变量命名约定：命令中<code>[xxx]</code>这里<code>xxx</code>是变量，后面说明的<code>[xxx]</code>也表示命令中的变量</p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
+<li><p>checkout</p>
+<ol>
+<li><p><code>git checkout [branch name] [file path]</code> </p>
+<p>用<code>[branch]</code>的<code>[file]</code>覆盖workspace和index的<code>[file]</code>，<strong>强制覆盖</strong></p>
+</li>
+<li><p><code>git checkout -- [file path]</code> </p>
+<p>用index的<code>[file]</code>覆盖workspace的<code>[file]</code>，<strong>强制覆盖</strong></p>
+</li>
+</ol>
+</li>
+<li><p>reset</p>
+<ol>
+<li><p><code>git reset [branch name] [file path]</code> </p>
+<p>用<code>[branch]</code>的<code>[file]</code>覆盖index的<code>[file]</code>，<strong>强制覆盖</strong></p>
+</li>
+</ol>
+</li>
+</ul>
+<p>注1：当前分支<code>[branch name]</code>用<code>HEAD</code>。</p>
+<p>注2：好像没有从<code>HEAD</code>绕过<code>index</code>到workspace的命令。</p>
+<p><img src="/./1.png" alt="git 文件操作命令"></p>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><ol>
+<li><p>查看某个文件和另一个分支的差异。(reset)</p>
+</li>
+<li><p>merge出现冲突爆炸后抢救一下。(checkout) </p>
+<p>类似于merge参数 -X theirs，然后可以手动吧自己的改动加上去</p>
+</li>
+</ol>
+<h2 id="对commit的操作"><a href="#对commit的操作" class="headerlink" title="对commit的操作"></a>对commit的操作</h2><h3 id="常用命令-1"><a href="#常用命令-1" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
+<li><p>cherry-pick</p>
+<ol>
+<li><p><code>git cherry-pick [commit id]</code>（多个commit空格分隔）</p>
+<p>把某个commit添加到当前commit后面。</p>
+<p>因为一个commit记录的是与上一个commit的差异，所以可能pick完会有冲突，手动解决冲突后可以自己走add-&gt;commit流程也可以add完后<code>git cherry-pick --continue</code>（建议用continue），一般来讲冲突会出现在某个文件有多次改动但是只pick了其中某一次的改动，但并不建议这么做。就是说如果cherry-pick出现冲突了那思考下有没有别的解决方案。</p>
+</li>
+</ol>
+</li>
+<li><p><a href="http://jartto.wang/2018/12/11/git-rebase/">rebase</a></p>
+<ol>
+<li><p><code>git rebase [branch name]</code></p>
+<p>找到当前分支和目标branch的分叉点然后把分叉点到最新的commit一个一个附加到目标branch的最前面。中间可能会出现无数个冲突，解决冲突后<code>git rebase --continue</code>改变主意了不想rebase了就<code>git rebase --abort</code></p>
+</li>
+<li><p><code>git rebase -i [commit id]</code> </p>
+<p>整理这个id之后的所有commit。执行后会出现一个文件让你编辑，那个文件的下面会有每个命令的说明。一般来说就为了把多个commit合并到一起的话就<code>git rebase -i HEAD~3</code>然后出现三个pick，第一行pck改成r，下面两行pick改成s就完事了，后面编辑message然后保存就行。</p>
+</li>
+</ol>
+</li>
+<li><p>reset</p>
+<ol>
+<li><p><code>git reset [--soft/hard] [commit id]</code></p>
+<p>没有任何参数就移动HEAD指针到对应commit，并重置index。从那个commit到最新的commit的那些改动全部放在工作区。加上–soft是不重置index，那些改动全部在index和工作区。加–hard是重置index和工作区。</p>
+</li>
+</ol>
+</li>
+<li><p>revert</p>
+<ol>
+<li><p><code>git revert [commitid]</code></p>
+<p>自动生成一个commit，内容与<code>[commitid]</code>对应的commit相反。注意：revert一个比较久远的commit时有很大概率会有冲突。另外，如果revert一个merge commit，那么那个commit的内容就再也merge不进去了。除非把revert产生的commit再revert掉。</p>
+</li>
+<li><p><code>git revert [较旧的commitid]..[较新的commitid]</code></p>
+<p>把区间（左开右闭）内的commit全部revert了。新旧commitid顺序反了会报错。左开右闭指的是较旧的commit不会revert，revert从较旧的后面那个开始到较新的commit，revert的顺序是从新到旧的（commit顺序反一下）</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="场景-1"><a href="#场景-1" class="headerlink" title="场景"></a>场景</h3><ol>
+<li>commit错分支了（cherry-pick + reset hard 或者reset + checkout）</li>
+<li>合并commit&#x2F;美化commit树（rebase）</li>
+<li>把仓库炸了（reset &#x2F; revert &#x2F; 删了重拉）</li>
+</ol>
+<h2 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h2><h3 id="常用命令-2"><a href="#常用命令-2" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
+<li><p>stash</p>
+<ol>
+<li><p><code>git stash push</code> </p>
+<p>把index的内容放入暂存区</p>
+</li>
+<li><p><code>git stash pop</code> </p>
+<p>把暂存区的内容放回index然后从暂存区删除，如果出现冲突则需要手动解决冲突并且不会删除暂存区，要手动drop</p>
+</li>
+<li><p><code>git stash drop</code> </p>
+<p>删除暂存区最新一个stash，可以指定id：<code>git stash drop stash@&#123;[id]&#125;</code>，id通过list命令获取。注意每次删除stash后id会修改，id恒为0开始的数列，删了<code>stash@&#123;2&#125;</code>那么原本的<code>stash@&#123;3&#125;</code>就变成了<code>stash@&#123;2&#125;</code>，后面依次往前挪</p>
+</li>
+<li><p><code>git stash list</code> </p>
+<p>列出stash列表，最前面显示的是id</p>
+</li>
+<li><p><code>git stash show --text stash@&#123;[id]&#125;</code></p>
+<p>查看stash内容</p>
+</li>
+</ol>
+</li>
+<li><p>worktree</p>
+<ol>
+<li><p><code>git worktree add -b [new branch] [new fold path] [from branch]</code></p>
+<p>创建一个worktree关联<code>[fold]</code>与<code>[branch]</code>。<code>[from branch]</code>省略的话默认是<code>HEAD</code>。</p>
+<p>等效于在<code>[fold]</code>下又clone了一份代码并且切换到<code>[branch]</code>分支（不完全一致，比clone一份更优雅）。然后我们cd到<code>[fold]</code>里会发现就是<code>[branch]</code>分支（不cd到<code>[fold]</code>在原路径是无法checkout到新分支的）</p>
+</li>
+<li><p><code>git worktree add [new fold path] [branch]</code></p>
+<p>上面命令的简化版。创建一个<code>[fold]</code>并关联<code>[branch]</code>，<code>[branch]</code>必须已存在（其实给个commitid也可以）。不给出<code>[branch]</code>就从<code>HEAD</code>切一个分支，分支名为文件夹名。</p>
+</li>
+<li><p><code>git worktree list</code></p>
+<p>列出所有的worktree</p>
+</li>
+<li><p><code>git worktree prune</code></p>
+<p>删除文件夹已经被删的worktree。</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>把以下代码加到<code>~/.zshrc</code>末尾。函数名即为命令名，可以自己换一个顺手的。对应项目的<code>.gitignore</code>要加上<code>node_modules</code>（注意结尾没有&#x2F;）、<code>.worktree</code>。</p>
+<p>  使用：<code>gwta [new branch name] [vscode name]</code>（一般不需要第二个参数…）</p>
+<p>  效果：以输入的分支名从<code>origin/master</code>切一个新的worktree。如果输入的分支在远程存在就从远程拉取并建立关联。</p>
+<p>  我中间加了行输出有颜色的echo，可以明确分支远程是否存在<code>echo -e &quot;\e[1;32m create worktree from [ $BRANCH ] in &#39;.worktree/$1&#39; \e[0m&quot;</code></p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">gwta</span></span>() &#123;</span><br><span class="line">  PROJECT_DIR=<span class="variable">$PWD</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 更新分支列表</span></span><br><span class="line">  git fetch --all</span><br><span class="line">  <span class="comment"># 搜索远程分支,并裁剪到origin/xxx</span></span><br><span class="line">  BRANCH=$(git branch -a | grep <span class="string">&quot;$1$&quot;</span> |  <span class="built_in">cut</span> -c 11- )</span><br><span class="line">  <span class="comment"># 没搜到就默认 origin/master</span></span><br><span class="line">  BRANCH=<span class="variable">$&#123;BRANCH:-origin/master&#125;</span></span><br><span class="line">  <span class="comment"># 创建 worktree</span></span><br><span class="line">  <span class="built_in">echo</span> -e <span class="string">&quot;\e[1;32m create worktree from [ <span class="variable">$BRANCH</span> ] in &#x27;.worktree/<span class="variable">$1</span>&#x27; \e[0m&quot;</span></span><br><span class="line">  git worktree add -b <span class="variable">$1</span> .worktree/<span class="variable">$1</span> <span class="variable">$BRANCH</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">cd</span> <span class="string">&quot;.worktree/<span class="variable">$1</span>&quot;</span></span><br><span class="line">  <span class="comment"># node_modules 软链接</span></span><br><span class="line"><span class="built_in">ln</span> -s <span class="variable">$PROJECT_DIR</span>/node_modules node_modules</span><br><span class="line">  <span class="comment"># 如果要设置  vscode 项目标题</span></span><br><span class="line">  <span class="keyword">if</span> [ <span class="variable">$2</span> ]; <span class="keyword">then</span></span><br><span class="line">  TITLE=<span class="string">&#x27;$&#123;activeEditorShort&#125;$&#123;separator&#125; &#x27;</span><span class="variable">$2</span></span><br><span class="line">  <span class="built_in">mkdir</span> -p .vscode</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;&#123;</span></span><br><span class="line"><span class="string">  \&quot;window.title\&quot;: \&quot;<span class="variable">$TITLE</span>\&quot;</span></span><br><span class="line"><span class="string">&#125;&quot;</span> &gt; ./.vscode/settings.json</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">  code .</span><br><span class="line">  <span class="built_in">cd</span> <span class="variable">$PROJECT_DIR</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="场景-2"><a href="#场景-2" class="headerlink" title="场景"></a>场景</h3><ol>
+<li>某项目开发一半同仓库下临时有个bug要改。</li>
+<li>同个代码仓库下同时有一大堆需求要做。</li>
+</ol>
+<p>这两场景其实一个意思。用stash的方案就是先<code>git stash push</code>，然后该干嘛干嘛。好了之后回到feature分支<code>git stash pop</code>。这样看上去很方便但是如果需求一多反复push、pop是很麻烦的。。。</p>
+<p>worktree提供了更优雅的方案，先用以上函数创建worktree。（我这边是gwta，你可以改函数名改成自己顺手的命令…）代码会在当前目录.worktree下，并且已经建立好了node_modules的软链。cd到里面的目录正常add-&gt;commit-&gt;push完事。发布完成后可以删除这个目录，然后在原目录执行<code>git worktree prune</code>就会删除这个worktree。然后在外面就可以切到新的分支了。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/front-end/" rel="tag"># front-end</a>
+          </div>
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  </div>
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/10/%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91(AST)/" rel="prev" title="抽象语法树(abstract syntax tree, AST)">
+      <i class="fa fa-chevron-left"></i> 抽象语法树(abstract syntax tree, AST)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/06/25/React/" rel="next" title="React">
+      React <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#oh-my-zsh-plugins"><span class="nav-number">1.</span> <span class="nav-text">oh-my-zsh plugins</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-%E6%8F%92%E4%BB%B6%E6%8F%90%E4%BE%9B%E7%9A%84alias"><span class="nav-number">1.1.</span> <span class="nav-text">git 插件提供的alias</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6%EF%BC%88%E8%BF%98%E6%9C%89%E6%8E%A8%E8%8D%90%E7%9A%84%E6%AC%A2%E8%BF%8E%E8%A1%A5%E5%85%85%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">其它常用插件（还有推荐的欢迎补充）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C%E3%80%90%E5%85%A8%E9%83%BD%E6%98%AF%E9%AB%98%E5%8D%B1%E5%91%BD%E4%BB%A4%E3%80%91"><span class="nav-number">2.</span> <span class="nav-text">对文件的操作【全都是高危命令】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">2.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF"><span class="nav-number">2.2.</span> <span class="nav-text">场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9commit%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">对commit的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-1"><span class="nav-number">3.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF-1"><span class="nav-number">3.2.</span> <span class="nav-text">场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="nav-number">4.</span> <span class="nav-text">工作流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-2"><span class="nav-number">4.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF-2"><span class="nav-number">4.2.</span> <span class="nav-text">场景</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="dreamhuan"
+      src="/images/dreamhuan.jpg">
+  <p class="site-author-name" itemprop="name">dreamhuan</p>
+  <div class="site-description" itemprop="description">萌新求带</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dreamhuan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dreamhuan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:fu_kaiqi@qq.com" title="E-Mail → mailto:fu_kaiqi@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">dreamhuan</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"lRR7RSSE3REHSKHORbXabbjR-gzGzoHsz","app_key":"8yMQK4RGLR0tKJXe5eoKVOyF","server_url":null,"security":true};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id    : 8026,
+      el    : 'wpac-rating',
+      color : 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://dreamhuan.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://dreamhuan.github.io/2021/05/25/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/";
+    this.page.identifier = "2021/05/25/git从入门到放弃/";
+    this.page.title = "git从入门到放弃";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://dreamhuan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
