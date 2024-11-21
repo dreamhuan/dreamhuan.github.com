@@ -20,21 +20,19 @@
     var CONFIG = {"hostname":"dreamhuan.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="谈谈Rxjs库的基本原理和使用。">
+  <meta name="description" content="记录一下拿到一台新的mac时的基础环境配置（web前端开发）。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Rxjs简介">
-<meta property="og:url" content="https://dreamhuan.github.io/2018/03/18/Rxjs%E7%AE%80%E4%BB%8B/index.html">
+<meta property="og:title" content="开发环境配置">
+<meta property="og:url" content="https://dreamhuan.github.io/2021/05/26/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="梦幻">
-<meta property="og:description" content="谈谈Rxjs库的基本原理和使用。">
+<meta property="og:description" content="记录一下拿到一台新的mac时的基础环境配置（web前端开发）。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-03-18T04:50:06.000Z">
-<meta property="article:modified_time" content="2024-11-08T07:32:34.542Z">
+<meta property="article:published_time" content="2021-05-26T03:37:17.000Z">
+<meta property="article:modified_time" content="2024-11-21T07:46:51.133Z">
 <meta property="article:author" content="dreamhuan">
-<meta property="article:tag" content="front-end">
-<meta property="article:tag" content="Rxjs">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://dreamhuan.github.io/2018/03/18/Rxjs%E7%AE%80%E4%BB%8B/">
+<link rel="canonical" href="https://dreamhuan.github.io/2021/05/26/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
 
 
 <script id="page-configurations">
@@ -47,7 +45,7 @@
   };
 </script>
 
-  <title>Rxjs简介 | 梦幻</title>
+  <title>开发环境配置 | 梦幻</title>
   
 
 
@@ -205,7 +203,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://dreamhuan.github.io/2018/03/18/Rxjs%E7%AE%80%E4%BB%8B/">
+    <link itemprop="mainEntityOfPage" href="https://dreamhuan.github.io/2021/05/26/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/dreamhuan.jpg">
@@ -218,7 +216,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Rxjs简介
+          开发环境配置
         </h1>
 
         <div class="post-meta">
@@ -228,24 +226,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2018-03-18 12:50:06" itemprop="dateCreated datePublished" datetime="2018-03-18T12:50:06+08:00">2018-03-18</time>
+              <time title="创建时间：2021-05-26 11:37:17" itemprop="dateCreated datePublished" datetime="2021-05-26T11:37:17+08:00">2021-05-26</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-08 15:32:34" itemprop="dateModified" datetime="2024-11-08T15:32:34+08:00">2024-11-08</time>
+                <time title="修改时间：2024-11-21 15:46:51" itemprop="dateModified" datetime="2024-11-21T15:46:51+08:00">2024-11-21</time>
               </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/front-end/" itemprop="url" rel="index"><span itemprop="name">front-end</span></a>
-                </span>
-            </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -263,8 +252,8 @@
       </span>
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2018/03/18/Rxjs%E7%AE%80%E4%BB%8B/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/18/Rxjs简介/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2021/05/26/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2021/05/26/开发环境配置/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -279,24 +268,92 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>谈谈Rxjs库的基本原理和使用。</p>
+        <p>记录一下拿到一台新的mac时的基础环境配置（web前端开发）。</p>
 <span id="more"></span>
 
-<h1 id="Rxjs库"><a href="#Rxjs库" class="headerlink" title="Rxjs库"></a>Rxjs库</h1><p>Rxjs是时下比较受欢迎的RP范式的一个库，RP是响应式编程的意思，就是说对于c&#x3D;a+b，a，b的变化均会导致c的变化。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">let</span> c = a+b;<span class="comment">//3</span></span><br><span class="line">a = <span class="number">10</span>;<span class="comment">//c还是3，就不是响应式的</span></span><br></pre></td></tr></table></figure>
+<h3 id="命令行工具"><a href="#命令行工具" class="headerlink" title="命令行工具"></a>命令行工具</h3><p><strong>Step1 安装 Homebrew</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>换成响应式的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> <span class="title class_">Rx</span>.<span class="title class_">Subject</span>();</span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">new</span> <span class="title class_">Rx</span>.<span class="title class_">Subject</span>();</span><br><span class="line"><span class="keyword">let</span> c = a</span><br><span class="line">    .<span class="title function_">combineLatest</span>(b, <span class="function">(<span class="params">total, now</span>) =&gt;</span> total + now) <span class="comment">// a+b</span></span><br><span class="line">    .<span class="title function_">subscribe</span>(<span class="variable language_">console</span>.<span class="property">log</span>);</span><br><span class="line">a.<span class="title function_">next</span>(<span class="number">1</span>);</span><br><span class="line">b.<span class="title function_">next</span>(<span class="number">2</span>);<span class="comment">// 输出3</span></span><br><span class="line">a.<span class="title function_">next</span>(<span class="number">10</span>);<span class="comment">// 输出12</span></span><br></pre></td></tr></table></figure>
+<p><strong>Step2 安装 oh my zsh</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>这里需要引入Rxjs的库，那么什么是Rxjs呢？应用官网的话“RxJS 是使用 Observables 的响应式编程的库，它使编写异步或基于回调的代码更容易。”emmmmmm…说和没说一样。。。那我用自己的理解说一下，Rxjs大概就是把一切数据都看做是流，然后所有的操作都是对流的变幻，每当流里面出来一个新的值都会经过一系列预设的操作得到相应的结果。应用响应式的思想可以让结果同步变化，应用函数式的思想可以让流处理变得十分方便。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> <span class="title class_">Rx</span>.<span class="title class_">Subject</span>();</span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">new</span> <span class="title class_">Rx</span>.<span class="title class_">Subject</span>();</span><br><span class="line"><span class="keyword">let</span> doublea = a.<span class="title function_">map</span>(<span class="function"><span class="params">d</span> =&gt;</span> d * <span class="number">2</span>); <span class="comment">//2*a</span></span><br><span class="line"><span class="keyword">let</span> squareb = b.<span class="title function_">map</span>(<span class="function"><span class="params">d</span> =&gt;</span> d * d); <span class="comment">//b^2</span></span><br><span class="line"><span class="keyword">let</span> c = doublea</span><br><span class="line">    .<span class="title function_">combineLatest</span>(squareb, <span class="function">(<span class="params">total, now</span>) =&gt;</span> total + now) <span class="comment">// 2*a+b^2</span></span><br><span class="line">    .<span class="title function_">subscribe</span>(<span class="variable language_">console</span>.<span class="property">log</span>)</span><br><span class="line">a.<span class="title function_">next</span>(<span class="number">1</span>);</span><br><span class="line">b.<span class="title function_">next</span>(<span class="number">2</span>); <span class="comment">//输出6</span></span><br><span class="line">a.<span class="title function_">next</span>(<span class="number">10</span>); <span class="comment">//输出24</span></span><br></pre></td></tr></table></figure>
+<p><strong>Step3 安装 Iterm2</strong><br>用 brew 安装<code>brew cask install iterm2</code><br>或者直接<a href="https://www.iterm2.com/downloads.html">下载安装</a></p>
+<p><strong>Step4 配置 Iterm2</strong><br>下载配色方案</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Downloads</span><br><span class="line">curl -O https://raw.githubusercontent.com/MartinSeeler/iterm2-material-design/master/material-design-colors.itermcolors</span><br></pre></td></tr></table></figure>
 
-<p>这里的map，combineLatest都是流处理函数，最后的subscribe是流订阅函数，只有被订阅的流才可以真正触发（订阅就类似于函数调用，没有订阅的流就只是一些步骤的定义，只有订阅了流才工作）</p>
-<p>上面说了一堆就是Rxjs入个门，Rxjs最大的魅力就是丰富多样的流处理函数，对于那么多的处理函数官网的查询机制也很完善，可以去体验下。</p>
-<p>对于Angular中，是默认使用Rxjs库的，比如常用的HTTP请求。我们先对aaa发起一个get请求，然后json化后取出bbb字段，最后log出来</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">http</span>.<span class="title function_">get</span>(<span class="string">&#x27;aaa&#x27;</span>)</span><br><span class="line">    .<span class="title function_">map</span>(<span class="function"><span class="params">data</span>=&gt;</span>data.<span class="title function_">json</span>())</span><br><span class="line">    .<span class="title function_">map</span>(<span class="function"><span class="params">data</span>=&gt;</span>data.<span class="property">bbb</span>)</span><br><span class="line">    .<span class="title function_">subscribe</span>(<span class="variable language_">console</span>.<span class="property">log</span>);</span><br></pre></td></tr></table></figure>
+<p>进入<code>iTerm2 &gt; Preferences &gt; Profiles &gt; Colors</code><br>最下面<code>Color Presets</code>点击<code>import</code>，导入刚刚下载的<code>material-design-colors.itermcolors</code></p>
+<h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3><p>安装 nvm</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure>
 
-<h1 id="进一步学习"><a href="#进一步学习" class="headerlink" title="进一步学习"></a>进一步学习</h1><p><a href="https://ithelp.ithome.com.tw/users/20103367/ironman/1199">30 天精通 RxJS</a><br><a href="https://zhuanlan.zhihu.com/p/34314169">使用响应式编程来实现简易版的无限滚动加载</a><br><a href="http://cn.rx.js.org/">Rxjs官网</a></p>
+<p>安装 node 最新 LTS 版本（注：这里如果报错找不到 nvm 就跑一下<code>source ~/.zshrc</code>）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install --lts</span><br></pre></td></tr></table></figure>
+
+<p>安装 yarn</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g yarn</span><br></pre></td></tr></table></figure>
+
+<p>修改 registry</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn config <span class="built_in">set</span> registry <span class="string">&#x27;https://registry.npmmirror.com/&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="IDE（参考）"><a href="#IDE（参考）" class="headerlink" title="IDE（参考）"></a>IDE（参考）</h3><p><a href="https://code.visualstudio.com/">vscode</a><br>快捷键说明：</p>
+<ul>
+<li>⌘ Command () win 键</li>
+<li>⌥ Option (alt)</li>
+<li>⌃ Control ctrl 键</li>
+<li>fn 功能键</li>
+<li>⇧ Shift</li>
+</ul>
+<p>插件：</p>
+<ol>
+<li>prettier</li>
+<li>eslint</li>
+<li>EditorConfig for VS Code</li>
+<li>GitLens</li>
+<li>Local History</li>
+<li>Bookmarks<br>给当前代码行添加书签，并且 vscode 的工具栏会多一个书签的项，点击后可以看到所有添加的书签列表，点击书签可以跳到对应位置，读代码有奇效，也方便记录一些经常访问的文件（比如 utils、config 等）</li>
+<li>Numbered Bookmarks<br>和上面那个的区别是这个有数字，每个文件支持 9 个命名书签（1-9）可以用快捷键快速跳转，（先去系统快捷键设置里面取消所有截屏的快捷键，会打架。截屏建议用企业微信的截屏 ⌘⇧A）。⌘⇧1 加数字为 1 的书签，⌘1 跳转到数字为 1 的书签，支持数字 1 到 9（如果不取消系统截屏快捷键的话部分会被系统捕获）</li>
+</ol>
+<h1 id="Iterm2骚操作"><a href="#Iterm2骚操作" class="headerlink" title="Iterm2骚操作"></a>Iterm2骚操作</h1><p>按键说明</p>
+<ul>
+<li>⌘ Command () win 键</li>
+<li>⌥ Option (alt)</li>
+<li>⌃ Control ctrl 键</li>
+<li>fn 功能键</li>
+<li>⇧ Shift</li>
+<li>↑&#x2F;↓&#x2F;←&#x2F;→ 方向键</li>
+</ul>
+<h2 id="多屏幕"><a href="#多屏幕" class="headerlink" title="多屏幕"></a>多屏幕</h2><ol>
+<li>⌘T 新打开一个tab</li>
+<li>⌘1 切换到第一个tab(数字支持1-9，1-8是前8个9是最后一个)</li>
+<li>⌘←&#x2F;→ 按方向切换tab</li>
+<li>⌘D 水平分屏</li>
+<li>⌘⇧D 垂直分屏</li>
+<li>⌘⇧↑&#x2F;↓&#x2F;←&#x2F;→ 按方向切换分屏</li>
+<li>⌃D 关闭当前的分屏，没有分屏时关闭tab</li>
+<li>双击某个分屏的控制区（就是每个分屏最上面那条横的）可以最大化当前分屏，再双击恢复</li>
+<li>拖动分屏的控制区可以给分屏换位置</li>
+</ol>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ol>
+<li>⌘R 清屏，但是记录还在往上滚动可以看到</li>
+<li>⌘K 真正的清屏</li>
+<li>⌘F 查找</li>
+<li>⌃a 光标到行首</li>
+<li>⌃e 光标到行尾</li>
+<li>⌃←&#x2F;→ 光标移动一个单词</li>
+<li>⌃u 清除当前行</li>
+<li>⌃k 清除光标到行尾的内容</li>
+<li>⌃w 清除光标往前一个单词</li>
+</ol>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ol>
+<li>复制粘贴<br>选中即复制，鼠标中建即粘贴</li>
+<li>历史记录不清空<br>每个分屏都是独立的session，默认会保存1000行记录（可以在preference设置）1000行在有大量日志的情况显然是不够的所以可以设置为不限，分屏上 右键-&gt;Edit Session-&gt;弹出来的Preferences里点Terminal-&gt;第一行钩上Unlimited scrollback。当然也可以全局设置为不限，但是可能内存压力会比较大</li>
+</ol>
+<h1 id="zsh骚操作"><a href="#zsh骚操作" class="headerlink" title="zsh骚操作"></a>zsh骚操作</h1><p>主要是zsh丰富的插件机制</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>找到<code>plugins=(git)</code>。可以看到它默认装了git插件，这个插件提供了许多git相关操作的alias。<br><code>alias | grep git</code>可以看到它加的alias，按需取用，熟练了后很方便。  </p>
+<p>其他的插件就推荐两，<code>z</code>和<code>wd</code>。安装只需要修改<code>plugins</code>里的内容，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plugins=(</span><br><span class="line">  git</span><br><span class="line">  wd</span><br><span class="line">  z</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>然后保存并退出后执行<code>source ~/.zshrc</code></p>
+<p><code>z</code>和<code>wd</code>都是处理路径跳转的，比如<code>z dev</code>就会跳到<code>developer</code>的目录下。当然这是有条件的，<code>z</code>会根据你平时<code>cd</code>的路径给每个路径加上权重，然后后面要访问的话只需要输入路径的一部分就好了，但是如果你访问<code>developer-user</code>的频率比<code>developer</code>大得多，<code>z dev</code>就会进到<code>developer-user</code>。这时候就可以用<code>wd</code>了，<code>wd</code>是为路径手动加上别名。比如在<code>developer</code>目录下<code>wd add dev</code>然后在别的路径下<code>wd dev</code>就可以到<code>developer</code>目录下了。另外直接输入<code>z</code>可以看到权重列表，<code>wd list</code>可以看到别名列表</p>
 
     </div>
 
@@ -305,10 +362,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/front-end/" rel="tag"># front-end</a>
-              <a href="/tags/Rxjs/" rel="tag"># Rxjs</a>
-          </div>
 
         
   <div class="post-widgets">
@@ -321,12 +374,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2018/03/18/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="prev" title="函数式编程">
-      <i class="fa fa-chevron-left"></i> 函数式编程
+    <a href="/2021/05/25/git%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/" rel="prev" title="git从入门到放弃">
+      <i class="fa fa-chevron-left"></i> git从入门到放弃
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/01/31/%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/" rel="next" title="实习总结">
-      实习总结 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/06/25/React/" rel="next" title="React">
+      React <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -393,7 +446,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Rxjs%E5%BA%93"><span class="nav-number">1.</span> <span class="nav-text">Rxjs库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.</span> <span class="nav-text">进一步学习</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7"><span class="nav-number">1.</span> <span class="nav-text">命令行工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#node"><span class="nav-number">2.</span> <span class="nav-text">node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IDE%EF%BC%88%E5%8F%82%E8%80%83%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">IDE（参考）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Iterm2%E9%AA%9A%E6%93%8D%E4%BD%9C"><span class="nav-number"></span> <span class="nav-text">Iterm2骚操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%B1%8F%E5%B9%95"><span class="nav-number"></span> <span class="nav-text">多屏幕</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number"></span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number"></span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh%E9%AA%9A%E6%93%8D%E4%BD%9C"><span class="nav-number"></span> <span class="nav-text">zsh骚操作</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -573,9 +626,9 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://dreamhuan.github.io/2018/03/18/Rxjs%E7%AE%80%E4%BB%8B/";
-    this.page.identifier = "2018/03/18/Rxjs简介/";
-    this.page.title = "Rxjs简介";
+    this.page.url = "https://dreamhuan.github.io/2021/05/26/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/";
+    this.page.identifier = "2021/05/26/开发环境配置/";
+    this.page.title = "开发环境配置";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {

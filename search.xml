@@ -417,7 +417,6 @@
 <p>作者：达达 XxjzZ<br>链接：<a href="https://www.zhihu.com/question/435921124/answer/1641235418">https://www.zhihu.com/question/435921124/answer/1641235418</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 </blockquote>
 <p>END</p>
-<p><img src="http://img.bqb12.com/Uploads/vod/2019-10-24/gx2eqbkgtoq.jpg" alt="学不动了"></p>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/">React 生命周期图</a></p>
 <p><a href="https://juejin.cn/post/6894204813970997256">十五分钟读懂 React 17</a></p>
 <p><a href="https://reactjs.org/blog/2020/08/10/react-v17-rc.html#other-breaking-changes">React v17.0 Release Candidate: No New Features</a></p>
@@ -1136,6 +1135,123 @@
         <tag>跨域</tag>
         <tag>jsonp</tag>
         <tag>CORS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>开发环境配置</title>
+    <url>/2021/05/26/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p>记录一下拿到一台新的mac时的基础环境配置（web前端开发）。</p>
+<span id="more"></span>
+
+<h3 id="命令行工具"><a href="#命令行工具" class="headerlink" title="命令行工具"></a>命令行工具</h3><p><strong>Step1 安装 Homebrew</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Step2 安装 oh my zsh</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Step3 安装 Iterm2</strong><br>用 brew 安装<code>brew cask install iterm2</code><br>或者直接<a href="https://www.iterm2.com/downloads.html">下载安装</a></p>
+<p><strong>Step4 配置 Iterm2</strong><br>下载配色方案</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> Downloads</span><br><span class="line">curl -O https://raw.githubusercontent.com/MartinSeeler/iterm2-material-design/master/material-design-colors.itermcolors</span><br></pre></td></tr></table></figure>
+
+<p>进入<code>iTerm2 &gt; Preferences &gt; Profiles &gt; Colors</code><br>最下面<code>Color Presets</code>点击<code>import</code>，导入刚刚下载的<code>material-design-colors.itermcolors</code></p>
+<h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3><p>安装 nvm</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure>
+
+<p>安装 node 最新 LTS 版本（注：这里如果报错找不到 nvm 就跑一下<code>source ~/.zshrc</code>）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm install --lts</span><br></pre></td></tr></table></figure>
+
+<p>安装 yarn</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i -g yarn</span><br></pre></td></tr></table></figure>
+
+<p>修改 registry</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn config <span class="built_in">set</span> registry <span class="string">&#x27;https://registry.npmmirror.com/&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="IDE（参考）"><a href="#IDE（参考）" class="headerlink" title="IDE（参考）"></a>IDE（参考）</h3><p><a href="https://code.visualstudio.com/">vscode</a><br>快捷键说明：</p>
+<ul>
+<li>⌘ Command () win 键</li>
+<li>⌥ Option (alt)</li>
+<li>⌃ Control ctrl 键</li>
+<li>fn 功能键</li>
+<li>⇧ Shift</li>
+</ul>
+<p>插件：</p>
+<ol>
+<li>prettier</li>
+<li>eslint</li>
+<li>EditorConfig for VS Code</li>
+<li>GitLens</li>
+<li>Local History</li>
+<li>Bookmarks<br>给当前代码行添加书签，并且 vscode 的工具栏会多一个书签的项，点击后可以看到所有添加的书签列表，点击书签可以跳到对应位置，读代码有奇效，也方便记录一些经常访问的文件（比如 utils、config 等）</li>
+<li>Numbered Bookmarks<br>和上面那个的区别是这个有数字，每个文件支持 9 个命名书签（1-9）可以用快捷键快速跳转，（先去系统快捷键设置里面取消所有截屏的快捷键，会打架。截屏建议用企业微信的截屏 ⌘⇧A）。⌘⇧1 加数字为 1 的书签，⌘1 跳转到数字为 1 的书签，支持数字 1 到 9（如果不取消系统截屏快捷键的话部分会被系统捕获）</li>
+</ol>
+<h1 id="Iterm2骚操作"><a href="#Iterm2骚操作" class="headerlink" title="Iterm2骚操作"></a>Iterm2骚操作</h1><p>按键说明</p>
+<ul>
+<li>⌘ Command () win 键</li>
+<li>⌥ Option (alt)</li>
+<li>⌃ Control ctrl 键</li>
+<li>fn 功能键</li>
+<li>⇧ Shift</li>
+<li>↑&#x2F;↓&#x2F;←&#x2F;→ 方向键</li>
+</ul>
+<h2 id="多屏幕"><a href="#多屏幕" class="headerlink" title="多屏幕"></a>多屏幕</h2><ol>
+<li>⌘T 新打开一个tab</li>
+<li>⌘1 切换到第一个tab(数字支持1-9，1-8是前8个9是最后一个)</li>
+<li>⌘←&#x2F;→ 按方向切换tab</li>
+<li>⌘D 水平分屏</li>
+<li>⌘⇧D 垂直分屏</li>
+<li>⌘⇧↑&#x2F;↓&#x2F;←&#x2F;→ 按方向切换分屏</li>
+<li>⌃D 关闭当前的分屏，没有分屏时关闭tab</li>
+<li>双击某个分屏的控制区（就是每个分屏最上面那条横的）可以最大化当前分屏，再双击恢复</li>
+<li>拖动分屏的控制区可以给分屏换位置</li>
+</ol>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ol>
+<li>⌘R 清屏，但是记录还在往上滚动可以看到</li>
+<li>⌘K 真正的清屏</li>
+<li>⌘F 查找</li>
+<li>⌃a 光标到行首</li>
+<li>⌃e 光标到行尾</li>
+<li>⌃←&#x2F;→ 光标移动一个单词</li>
+<li>⌃u 清除当前行</li>
+<li>⌃k 清除光标到行尾的内容</li>
+<li>⌃w 清除光标往前一个单词</li>
+</ol>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ol>
+<li>复制粘贴<br>选中即复制，鼠标中建即粘贴</li>
+<li>历史记录不清空<br>每个分屏都是独立的session，默认会保存1000行记录（可以在preference设置）1000行在有大量日志的情况显然是不够的所以可以设置为不限，分屏上 右键-&gt;Edit Session-&gt;弹出来的Preferences里点Terminal-&gt;第一行钩上Unlimited scrollback。当然也可以全局设置为不限，但是可能内存压力会比较大</li>
+</ol>
+<h1 id="zsh骚操作"><a href="#zsh骚操作" class="headerlink" title="zsh骚操作"></a>zsh骚操作</h1><p>主要是zsh丰富的插件机制</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim ~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>找到<code>plugins=(git)</code>。可以看到它默认装了git插件，这个插件提供了许多git相关操作的alias。<br><code>alias | grep git</code>可以看到它加的alias，按需取用，熟练了后很方便。  </p>
+<p>其他的插件就推荐两，<code>z</code>和<code>wd</code>。安装只需要修改<code>plugins</code>里的内容，</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">plugins=(</span><br><span class="line">  git</span><br><span class="line">  wd</span><br><span class="line">  z</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>然后保存并退出后执行<code>source ~/.zshrc</code></p>
+<p><code>z</code>和<code>wd</code>都是处理路径跳转的，比如<code>z dev</code>就会跳到<code>developer</code>的目录下。当然这是有条件的，<code>z</code>会根据你平时<code>cd</code>的路径给每个路径加上权重，然后后面要访问的话只需要输入路径的一部分就好了，但是如果你访问<code>developer-user</code>的频率比<code>developer</code>大得多，<code>z dev</code>就会进到<code>developer-user</code>。这时候就可以用<code>wd</code>了，<code>wd</code>是为路径手动加上别名。比如在<code>developer</code>目录下<code>wd add dev</code>然后在别的路径下<code>wd dev</code>就可以到<code>developer</code>目录下了。另外直接输入<code>z</code>可以看到权重列表，<code>wd list</code>可以看到别名列表</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>大厂，大厂...</title>
+    <url>/2024/11/18/%E5%A4%A7%E5%8E%82/</url>
+    <content><![CDATA[<p>工作 5 年，互联网的寒气也终于传导到了我头上。看了下上篇文章也确实停留在了进大厂之前，虽说也有个人懈怠的成分在，但大厂是真的累…正好趁着被优化后难得的空闲时间写点什么，也算给自己留下一个记忆锚点。</p>
+<span id="more"></span>
+
+<h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><p>涂鸦是一家不错的公司，至少我在职的那两年是这样，工作节奏平缓，也能学到很多东西。但或许是当时社区团购的欣欣向荣亦或许是周围同事的人心惶惶（当时涂鸦正筹备上市来着，懂的都懂），一位朋友问我要不要来阿里试试时我就直接冲了。结果竟然还挺顺利，经过几轮面试后就愉快地进入 offer 环节，那段过程最让我印象深刻的反而是我的一面（也是我后来的师兄），他全方位多角度前端问题覆盖直接给我问得汗流浃背，所幸当时准备够充分也就有惊无险地过了。当然这里还有个插曲，中间闲着也是闲着就顺带面了一下字节，虽然也过了，但是还是没去（别问，问就是阿里给的实在太多了.jpg，ps：不是字节给不起，而是当时阿里社区团购有额外 6k 补贴，直接给我听懵了，虽然最后没发几个月…）然后就是交接、离职、入职无缝衔接，至此开始了我的大厂生涯。</p>
+<h2 id="landing"><a href="#landing" class="headerlink" title="landing"></a>landing</h2><p>大厂的转正压力还是挺大的，在那之前我一直以为转正答辩啥的只是走个过场，直到 leader 安排了一次内部试讲，我才知道试用期真的会卡人…在进阿里之前，我只是个无情的 coding 机器，虽说涂鸦也有完整的需求流程，但基本上产品说啥我做啥，上线后除了有 bug 别的一概与我无瓜。但是阿里第一课就是要学会怎么“砍需求”（师兄带我去需求评审并把需求整个打回时我人都傻了，还有这种操作？）。需求评审不再是产品的独角戏，需求的各个细节都要一起评估是否必要，是否合理，是否完备，以及整个需求的 ROI（没错，需求评审时就要明确后续收益如何计算，各个端的贡献如何）。然后就是可能引起不适的上价值环节，比如前端做些什么可以额外提高需求价值（这个要求也是被骂的最惨的，“你做和别人做有什么区别”是不是有那味了）</p>
+<p>所以很多人提的大厂的人都是专精一块，其实也是有点误解的，现在基本都是要求你写得了需求拉得了数据最好还能直接整出报表。前端？前端只是一个划分，哪个前端还没写过点后端呢（就好比哪个后端没做过点数据分析呢）。愈演愈烈后就又是被骂的一个点，本职工作做的再好也没啥用，稍微搞点本职工作之外的东西才是关键，美其名曰补位，实则都是扯淡。（比如前端写点 Map Reduce 做数据分析拉报表可以在述职上狠狠吹一笔，但是需求开发的很稳定无 bug，代码很优雅易扩展，就是基操勿 6）以至于越来越卷，都去干别人的事儿了。也不是说补位不好，就是每个人都关注补位之后，补位就是基操勿 6 了…</p>
+<p>然后就是所谓的技术需求，阿里的 kpi 要求是一半一半（业务需求技术需求各占二分之一），甚至相当一部分人业务需求都丢给外包做，自己去搞技术需求，因为这玩意才能体现“价值”。没办法，氛围如此，那就搞呗。（其实我对这个本身也没那么排斥，有需求以外的事情可以调节也挺好，就是这玩意强制之后就变味了…）</p>
+<h2 id="搞事情"><a href="#搞事情" class="headerlink" title="搞事情"></a>搞事情</h2><p>上回书说到技术需求，我是做商品分享相关，就在师兄帮助下搞了一个内容平台，目的在于让用户的商品分享内容有更丰富的素材。做到后面把产品、UED、后端一起拉下水来做这玩意了，大家为了同一个目标努力的感觉还是挺好的。我前后端开工，三下五除二就把平台搭了起来（其他一起做的人主要还是搞 app 端内容，那玩意的后端可不敢交给我，至于内容平台就自己人用用的就交给我练手了）平台的搭建只是最简单的一步，素材没有咋办呢？我们自己录！UED 和产品妹子写拍摄脚本、分镜、剪视频，简直是超人！至于图片素材就我们来拍啦。最后成功在水果品类上上了第一版的素材分享，结果你猜怎么着，完全没人用…因为一方面大部分人分享就是完成个任务，另一方面我们的素材放的比较隐蔽，内容也比较少。因为是探索性质的东西，如果占太大区域结果影响了其他大盘的数据，那就可以直接打包行李了。随后我们脑暴到半夜（划去）实际上是找了个幽静的地儿项目组的人一起喝了个下午茶讨论了下咋办，毕竟大家期望还是挺高的，也付出了大量人力（而且理论上讲效果应该要好的，因为整之前其实是做了小范围实验的）</p>
+<p>讨论结果最终达成一致还是看到的人太少的问题（藏太深了），幸好我们把产品也拉下水了，他直接找老板讨论了下要到了宝贵的 10%的流量给我们直接放首页做实验，随后我们又找数据的同学设计实验模型，推送素材数据。然后洗数据拉图表，最终证明了我们整的素材确实能带来更高的点击转化率。随后就得到了资源倾斜，拉了一个组的运营来给我们拍素材（我们相当于跑通了素材分享的流程）再后来大部分的商品都出了单独的素材模块，素材分享几乎成为了标配功能。只不过后面人算不如天算，社区团购遭到了降维打击，整体业务越来越差，这就是后话了…</p>
+<h2 id="跳槽"><a href="#跳槽" class="headerlink" title="跳槽"></a>跳槽</h2><p>当自己站在选择的路口时，没人能知道门的后面是啥。哪怕现在往回看，也不好说当时的选择是否正确。面临每况愈下的社区团购，另一个选择来到我面前，一个前同事找到我说在字节带团队，正好在招人，有没有兴趣聊聊？那就聊聊呗，反正也没啥成本。聊的结果是业务很新但也很卷，继续留着虽然没那么卷，事情做着也顺手，但是早晚会有什么变化（实际上变化到来是两年后了，这该死的巧合）反正还年轻，就去卷一卷呗，于是乎终于还是去了字节。我也曾想过如果一开始就去字节现在会怎么样，亦或者那时候没去字节现在会怎么样？但都没有意义，也找不到答案。</p>
+<h2 id="字节一年人间三年"><a href="#字节一年人间三年" class="headerlink" title="字节一年人间三年"></a>字节一年人间三年</h2><p>卷是真的卷，10-10-5的节奏差点给我干懵逼，需求密度极大，好处是没那么多技术项目要求，坏处是该有的PUA、向上管理，一个都不会少。其实说项目有好多能说，但这毕竟不是简历，我也无心再去回想那一个个疲惫的晚上。字节不培养人，一点没错，还没入职就安排好了两个项目。后面换了leader节奏没有那么恐怖了，但是业务也逐渐边缘了，当然这是后话。</p>
+<p>印象最深刻的反而是那次团建，大家酒桌上谈需求，没有业务逻辑，全是人情世故（酒是真难喝）。和朋友提起时真心感受到不同组之间的天差地别以及leader对整个团队风气的影响。认同，但不接受。</p>
+<p>然后换了一个又一个的leader，唯一不变的是变化。新官上任三把火，大刀阔斧的技术革新也让我们有了应用最新技术的机会，顺便梳理了一遍技术债，进行各种重构、优化、学习、分享。那段时间可能是我在字节最舒服的一段时间吧。整体技术提升也是最快的，不再是之前按部就班地围绕需求团团转的生活。但对内的业务本身架不住完成使命后的边缘化，加上大环境的萧条，我也终于迎来了毕业。</p>
+<h2 id="缘灭"><a href="#缘灭" class="headerlink" title="缘灭"></a>缘灭</h2><p>被开后开始思考早就应该思考的问题：我想要什么？无论小厂还是大厂，我们都是螺丝钉，被需求，被他人推着走。即使理解了业务本身，也只能去添砖加瓦，它不属于我，我也改变不了什么。制裁会降临在每个人头上，当它真正来临时，我又该有何去处呢？现在只是真正未来那一刻的预演，我深知现在还没到时候，但要早做准备，去学习，去生活。工作只是生活的一部分，人的一生所求其实很少，而真正重要的东西从来都是内心的自洽。</p>
+<p>人生如逆旅我亦是行人。</p>
+]]></content>
+      <categories>
+        <category>life</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
       </tags>
   </entry>
 </search>

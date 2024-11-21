@@ -1,0 +1,235 @@
+%-------------------------
+% Resume in Latex
+% Author : Sourabh Bajaj
+% License : MIT
+% Link : https://www.overleaf.com/project/673c5b0f9f19c223b26dc03f
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-10pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-10pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeItemNoTitle}[1]{
+  \item\small{
+    {#1}
+  }\vspace{-1pt}
+}
+
+\newcommand{\resumeItemSubitemNoTitle}[1]{
+\begin{itemize}[label=\textbullet]
+  \item{
+    {#1}
+  }\vspace{-1pt}
+\end{itemize}
+  
+}
+
+\newcommand{\tf}[1]{
+    \textbf{#1}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item[]
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\experienceSubheading}[5]{
+  \vspace{-1pt}\item[]
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} (#2) & #3 \\
+      \textit{\small#4} & \textit{\small #5} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\projectSubheading}[5]{
+  \vspace{-1pt}\item[]
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} (#5) & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\projectSubheadingWORef}[5]{
+  \vspace{-1pt}\item[]
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]\vspace{4pt}}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING-----------------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{\href{https://dreamhuan.github.io/}{\Large Kaiqi Fu}} 
+  \\
+  Mobile : +86-18268706984 \space\space\space\space\space\space\space \space\space   \space\space\space\space\space
+  &
+  Blog :\href{https://dreamhuan.github.io/}{ dreamhuan.github.io}
+  & 
+  Email : \href{mailto:fu\_kaiqi@qq.com}{fu\_kaiqi@qq.com}
+  &
+  GitHub : \href{https://github.com/dreamhuan}{github.com/dreamhuan}
+  &
+  Address : Hangzhou, Zhejiang
+  \space
+  \space\space
+  
+  
+\end{tabular*}
+
+\section{Experience}
+  \resumeSubHeadingListStart
+  
+  \resumeSubheading
+    {ByteDance}
+    {Hangzhou, China}
+    {Software Development Engineer}
+    {Sept 2022 – Sept 2024}
+    \resumeItemListStart
+      \resumeItemNoTitle{
+      Focused on business development for the Douyin Pay Merchant Portal platform—a ByteDance internal service platform designed for merchant onboarding and payment service integration.  
+        \resumeItemSubitemNoTitle{
+        Utilized the \textbf{Ract} tech stack alongside a \textbf{Go-based BFF} application layer for distributing RPC interface services.  
+        }
+        \resumeItemSubitemNoTitle{
+        Refactored front-end logic using \textbf{Garfish} as the micro-frontend framework, enabling independent deployment of individual functional modules.  
+        }
+      } 
+      \resumeItemNoTitle{
+      Developed and maintained a role-based access control (RBAC) system to manage user permissions for the Merchant Portal platform. The core tech stack included Gulux (a full-stack development framework based on \textbf{Ract} and \textbf{Node.js}) and \textbf{MySQL}.  
+      }
+      \resumeItemNoTitle{
+      Developed a form configuration platform based on the Formily framework to centralize the management of form logic for the Merchant Portal platform. This platform allows non-developers to preview and edit form fields while dynamically generating form configurations.  
+      }
+    \resumeItemListEnd  
+
+  \resumeSubheading
+    {Alibaba}
+    {Hangzhou, China}
+    {Software Development Engineer}
+    {Jul 2021 – Sept 2022}
+    \resumeItemListStart
+      \resumeItemNoTitle{
+      Worked as a front-end developer in Alibaba's community group-buying business, developing the sharing module for the Taocaicai App. The core tech stack included \textbf{Rax}, an internally developed cross-platform framework similar to \textbf{React}.  
+      } 
+      \resumeItemNoTitle{
+      Developed a content platform for managing and distributing image and video assets, enabling users to share products more effectively and improve click-through rates. Utilized a tech stack including \textbf{Typescript}, \textbf{React}, and \textbf{Node.js}.  
+      } 
+      \resumeItemNoTitle{
+      Developed a template platform for image composition, utilizing Alibaba's internal image synthesis service to add promotional information and other content to product images, aiming to enhance conversion rates for shared products.  
+      } 
+    \resumeItemListEnd  
+  
+  \resumeSubheading
+    {Tuya Inc.}
+    {Hangzhou, China}
+    {Software Development Engineer}
+    {May 2019 – Jul 2021}
+    \resumeItemListStart
+      \resumeItemNoTitle{
+      Participated in design and development of IoT Platform Application Services using \textbf{Next.js} technology.  
+      } 
+      \resumeItemNoTitle{
+      Developed a dependency management system to analyze project reference relationships, facilitating overall project migration and refactoring.  
+      }
+    \resumeItemListEnd  
+  
+    \resumeSubheading
+      {Youzan Technology Ltd.}
+      {Hangzhou, China}
+      {Software Development Engineer}
+      {Jul 2018 – Jan 2019}
+      \resumeItemListStart
+        \resumeItemNoTitle
+        {Worked as an intern optimizing current features and building new features using \textbf{React}, \textbf{Vue} and \textbf{Node.js}.}
+        \resumeItemNoTitle
+        {Implemented a system to register components on the H5 side for rendering based on API responses. }
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+
+%-----------EDUCATION-----------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Hangzhou Normal University (HZNU)}{Hangzhou, China}
+      {Bachelor of Engineering in Software Engineering}{Sept 2015 - Jul 2019}
+  \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------------
+\section{Programming Skills}
+  \resumeSubHeadingListStart
+    \textbf{Programming Languages}{: Javascript, Typescript, Node.js, Java, Python, Go}
+    \newline
+    \textbf{Front-end Technology}{: React, Vue, Angular, Less, Scss, Redux, Bootstrap }
+    \newline
+    {\textbf{Back-end Development}}{: Express, Koa, MongoDB, MySQL, SpringBoot, Redis}
+    \newline
+    {\textbf{Devops}}{: Kubernetes, Docker, Alicloud, Bash }
+    \newline
+    \textbf{Tools}{: VSCode, Vim, Git, Iterm2, Oh-My-Zsh}
+\resumeSubHeadingListEnd
+
+\end{document}
